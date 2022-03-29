@@ -7,11 +7,4 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent {
 
-  count = 0;
-
-  constructor() { }
-
-  incrementCount() {
-    this.count += 1;
-  }
 }
