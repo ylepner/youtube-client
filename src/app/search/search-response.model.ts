@@ -1,10 +1,10 @@
-import { Item } from "./search-item.model";
+import { SearchResultItem } from "./search-item.model";
 
 export interface SearchResultList {
   kind: string;
   etag: string;
   pageInfo: PageInfo;
-  items: Item[];
+  items: SearchResultItem[];
 }
 export interface PageInfo {
   totalResults: number;
