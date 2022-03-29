@@ -1,0 +1,27 @@
+button {
+  background-color: #2f80ed;
+  height: 30px;
+  width: 50px;
+  border: none;
+  color: white;
+}
+
+.play-btn {
+  border-radius: 10%;
+}
+
+.search-btn {
+  border-top-right-radius: 10%;
+  border-bottom-right-radius: 10%;
+  width: 80px;
+}
+
+input {
+  width: 35%;
+  margin-left: 20px;
+  height: 24px;
+}
+
+.flex {
+  display: flex;
+}
