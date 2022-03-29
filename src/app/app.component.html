@@ -1,2 +1,9 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
+<div *ngFor="let item of result?.items" style="border: solid red 1px;">
+  <app-search-item [item]="item"></app-search-item>
+</div>
+
+<!-- <pre>
+  {{result | json}}
+</pre> -->

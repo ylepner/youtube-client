@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { SearchResultList } from './search/search-response.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'youtube-client';
+
+  result?: SearchResultList;
+
+  constructor(httpClient: HttpClient) {
+    httpClient.get<SearchResultList>('assets/data/data.json').subscribe(r => {
+      this.result = r;
+    })
+  }
 }
