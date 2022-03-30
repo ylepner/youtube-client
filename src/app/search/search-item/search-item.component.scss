@@ -1,0 +1,20 @@
+.item-container {
+  border: 1px solid red;
+  margin: 0 11vh;
+  height: 50vh;
+  padding: 2vh;
+}
+
+.video {
+  display: flex;
+  justify-content: center;
+}
+
+.statistics {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+  font-size: 2.5vh;
+  justify-content: space-between;
+}
