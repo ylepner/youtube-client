@@ -1,9 +1,7 @@
 button {
-  background-color: #2f80ed;
-  height: 30px;
-  width: 50px;
   border: none;
   color: white;
+  padding: 0;
 }
 
 .play-btn {
@@ -14,6 +12,8 @@ button {
   border-top-right-radius: 10%;
   border-bottom-right-radius: 10%;
   width: 80px;
+  background-color: #2f80ed;
+  height: 30px;
 }
 
 input {
@@ -24,4 +24,10 @@ input {
 
 .flex {
   display: flex;
+}
+
+.main-container {
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
 }
