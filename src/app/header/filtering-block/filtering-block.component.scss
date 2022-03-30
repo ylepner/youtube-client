@@ -1,0 +1,22 @@
+@import "theme.scss";
+.filtering-container {
+  justify-content: center;
+  background-color: #efefef;
+}
+
+button {
+  background-color: none;
+  border: none;
+  font-family: roboto;
+  color: $primary-color;
+  padding: 0 10px;
+  font-size: 1rem;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+input {
+  border: none;
+}
