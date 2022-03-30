@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  showFilters = false;
 
+  toggleFilters() {
+    this.showFilters = !this.showFilters;
+  }
 }
