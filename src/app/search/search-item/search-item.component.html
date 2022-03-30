@@ -1,21 +1,21 @@
-<div class="item-container roboto">
+<div class="item-container roboto flex flex-col">
   <div class="video">
     <img src="{{item?.snippet?.thumbnails?.default?.url}}" alt="">
   </div>
   <div class="statistics">
-    <div class="view-info">
-      <img src="assets/svg/viewed.svg" alt="">
-      {{item?.statistics?.viewCount}}
+    <div class="view-info flex">
+      <div><img src="assets/svg/viewed.svg" alt=""></div>
+      <div>{{item?.statistics?.viewCount}}</div>
     </div>
-    <div class="likes">
+    <div class="likes flex">
       <img src="assets/svg/liked.svg" alt="">
       {{item?.statistics?.likeCount}}
     </div>
-    <div class="dislikes">
+    <div class="dislikes flex">
       <img src="assets/svg/dislike.svg" alt="">
       {{item?.statistics?.dislikeCount}}
     </div>
-    <div class="comments">
+    <div class="comments flex">
       <img src="assets/svg/group9.svg" alt="">
       {{item?.statistics?.commentCount}}
     </div>

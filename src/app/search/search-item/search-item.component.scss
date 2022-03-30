@@ -1,10 +1,8 @@
 .item-container {
-  margin: 0 11vh;
-  height: 65vh;
-  padding: 2vh;
-  position: relative;
+  height: 100%;
+  padding: 20px;
   background-color: #efefef;
-  border-radius: 2%;
+  border-radius: 5px;
 }
 
 .video {
@@ -15,10 +13,8 @@
 
 .statistics {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 8vh;
-  font-size: 2.5vh;
+  font-size: 0.8rem;
   justify-content: space-between;
   padding: 10px 0;
 }
@@ -26,18 +22,8 @@
 .title {
   display: flex;
   justify-content: center;
-  font-weight: 600;
-  padding: 10px 0;
   font-family: "Open Sans", sans-serif;
-}
-
-.blue-btn {
-  width: 6vw;
-  background-color: #2f80ed;
-  height: 30px;
-  border: none;
-  border-radius: 5%;
-  color: white;
+  flex-grow: 1;
 }
 
 .btn-container {
@@ -46,6 +32,15 @@
 }
 
 .more-btn {
-  position: absolute;
+  background-color: #2f80ed;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  color: white;
   bottom: 20px;
+  padding: 0 20px;
+}
+
+img {
+  padding: 0 5px;
 }
