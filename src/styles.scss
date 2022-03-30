@@ -1,6 +1,6 @@
 @font-face {
   font-family: Roboto;
-  src: url(/assets/fonts/Roboto-Light.ttf);
+  src: url(assets/fonts/Roboto-Light.ttf);
 }
 
 .roboto {
@@ -10,3 +10,11 @@
 button {
   cursor: pointer;
 }
+
+.flex {
+  display: flex;
+}
+
+// body {
+//   background-color: red;
+// }
