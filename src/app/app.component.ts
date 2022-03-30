@@ -9,11 +9,5 @@ import { SearchResultList } from './search/search-response.model';
 export class AppComponent {
   title = 'youtube-client';
 
-  result?: SearchResultList;
 
-  constructor(httpClient: HttpClient) {
-    httpClient.get<SearchResultList>('assets/data/data.json').subscribe(r => {
-      this.result = r;
-    })
-  }
 }
