@@ -1,13 +1,16 @@
 .item-container {
-  border: 1px solid red;
   margin: 0 11vh;
-  height: 50vh;
+  height: 65vh;
   padding: 2vh;
+  position: relative;
+  background-color: #efefef;
+  border-radius: 2%;
 }
 
 .video {
   display: flex;
   justify-content: center;
+  height: 40%;
 }
 
 .statistics {
@@ -17,4 +20,31 @@
   height: 8vh;
   font-size: 2.5vh;
   justify-content: space-between;
+  padding: 10px 0;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  padding: 10px 0;
+}
+
+.blue-btn {
+  width: 6vw;
+  background-color: #2f80ed;
+  height: 30px;
+  border: none;
+  border-radius: 5%;
+  color: white;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.more-btn {
+  position: absolute;
+  bottom: 20px;
 }
