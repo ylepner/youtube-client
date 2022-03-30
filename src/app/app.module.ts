@@ -7,7 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { SearchItemComponent } from './search/search-item/search-item.component';
-import { FilteringBlockComponent } from './header/filtering-block/filtering-block.component';
+import { FilteringBlockComponent } from './filtering-block/filtering-block.component';
 
 @NgModule({
   declarations: [
