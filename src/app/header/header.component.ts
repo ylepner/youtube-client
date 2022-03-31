@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { SearchVideoQuery } from '../search/search-query.model';
+import { SearchVideoQuery, Sorting } from '../search/search-query.model';
 
 @Component({
   selector: 'app-header',
@@ -15,11 +15,18 @@ export class HeaderComponent {
   @Output()
   querySubmitted = new EventEmitter<SearchVideoQuery>();
 
+  @Output()
+  sortingChange = new EventEmitter<Sorting>();
+
   toggleFilters() {
     this.showFilters = !this.showFilters;
   }
 
   submit() {
     this.querySubmitted.next(this.searchQuery);
+  }
+
+  sorting(event: Sorting) {
+    this.sortingChange.next(event);
   }
 }

@@ -10,5 +10,5 @@
       <img class="px-2" src="assets/svg/login.svg" alt="login">
     </button>
   </div>
-  <app-filtering-block *ngIf="showFilters"></app-filtering-block>
+  <app-filtering-block (sortingChange)="sorting($event)" *ngIf="showFilters"></app-filtering-block>
 </div>
