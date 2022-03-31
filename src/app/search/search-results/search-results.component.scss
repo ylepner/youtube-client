@@ -1,5 +1,4 @@
 .search-result-container {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 300px;
-  @apply grid gap-10 m-8;
+  gap: 7.5rem;
+  @apply flex m-8 flex-wrap;
 }
