@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { SearchVideoQuery } from '../search/search-query.model';
 
 @Component({
   selector: 'app-header',
@@ -6,9 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+
   showFilters = false;
+  // привязать это значение к инпуту через ngModel в две стороны
+  searchQuery: SearchVideoQuery = {}
+
+  @Output()
+  querySubmitted = new EventEmitter<SearchVideoQuery>();
 
   toggleFilters() {
     this.showFilters = !this.showFilters;
+  }
+
+  submit() {
+    this.querySubmitted.next(this.searchQuery);
   }
 }
