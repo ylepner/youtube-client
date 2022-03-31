@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { SearchVideoQuery } from 'src/app/search/search-query.model';
 import { SearchResultList } from 'src/app/search/search-response.model';
 
 @Component({
@@ -10,9 +11,13 @@ import { SearchResultList } from 'src/app/search/search-response.model';
 export class HomeComponent {
   result?: SearchResultList;
 
-  constructor(httpClient: HttpClient) {
-    httpClient.get<SearchResultList>('assets/data/data.json').subscribe(r => {
+  constructor(private httpClient: HttpClient) {
+  }
+
+  querySubmitted(event: SearchVideoQuery) {
+    this.httpClient.get<SearchResultList>('assets/data/data.json').subscribe(r => {
       this.result = r;
     })
   }
+
 }
