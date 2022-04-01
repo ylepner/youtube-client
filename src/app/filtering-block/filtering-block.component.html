@@ -2,6 +2,8 @@
   Sorting by:
   <button (click)="sortByDate()" [class.active]="sorting?.field === 'date'">date</button>
   <button (click)="sortByViews()" [class.active]="sorting?.field === 'viewsCount'">count of views</button>
-  <button>by word or sentence</button>
-  <input [(ngModel)]="filter" type="text">
+  <div class="flex flex-row-reverse">
+    <input [(ngModel)]="filter" type="text" #filterInput>
+    <button (click)="filterInput.focus()">by word or sentence</button>
+  </div>
 </div>
