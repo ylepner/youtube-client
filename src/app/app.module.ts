@@ -17,15 +17,10 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     SearchResultsComponent,
     SearchItemComponent,
-    FilteringBlockComponent
+    FilteringBlockComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

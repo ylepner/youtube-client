@@ -1,4 +1,3 @@
-
 export interface SearchVideoQuery {
   searchText?: string;
 }
@@ -8,5 +7,5 @@ export interface Sorting {
   field: Field;
   type: SortingType;
 }
-export type Field = 'date' | 'viewsCount'
+export type Field = 'date' | 'viewsCount';
 export type SortingType = 'asc' | 'desc';

@@ -4,10 +4,9 @@ import { Field, Sorting } from '../search/search-query.model';
 @Component({
   selector: 'app-filtering-block',
   templateUrl: './filtering-block.component.html',
-  styleUrls: ['./filtering-block.component.scss']
+  styleUrls: ['./filtering-block.component.scss'],
 })
 export class FilteringBlockComponent {
-
   sorting?: Sorting;
   private _filter?: string;
 
@@ -36,12 +35,13 @@ export class FilteringBlockComponent {
   updateSorting(field: Field) {
     if (!this.sorting) {
       this.setSorting({ field: field, type: 'asc' });
-    }
-    else if (field !== this.sorting.field) {
-      this.setSorting({ field: field, type: 'asc' })
-    }
-    else {
-      this.setSorting({ field: field, type: this.sorting.type === 'asc' ? 'desc' : 'asc' })
+    } else if (field !== this.sorting.field) {
+      this.setSorting({ field: field, type: 'asc' });
+    } else {
+      this.setSorting({
+        field: field,
+        type: this.sorting.type === 'asc' ? 'desc' : 'asc',
+      });
     }
   }
 
@@ -53,5 +53,4 @@ export class FilteringBlockComponent {
   filterChange(value: string) {
     this.filteringChange.next(value);
   }
-
 }

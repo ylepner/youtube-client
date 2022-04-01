@@ -4,10 +4,8 @@ import { SearchResultList } from './search/search-response.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'youtube-client';
-
-
 }

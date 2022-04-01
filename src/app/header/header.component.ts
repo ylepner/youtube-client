@@ -4,13 +4,12 @@ import { SearchVideoQuery, Sorting } from '../search/search-query.model';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-
   showFilters = false;
   // привязать это значение к инпуту через ngModel в две стороны
-  searchQuery: SearchVideoQuery = {}
+  searchQuery: SearchVideoQuery = {};
 
   @Output()
   querySubmitted = new EventEmitter<SearchVideoQuery>();
