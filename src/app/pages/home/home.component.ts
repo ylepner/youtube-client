@@ -27,16 +27,16 @@ export class HomeComponent {
 
   sortingChange(event: Sorting) {
     if (event.field === 'date' && event.type === 'asc') {
-      this.result?.items.sort(compareByDateAsc);
+      this.items?.sort(compareByDateAsc);
     } else if (event.field === 'date' && event.type === 'desc') {
-      this.result?.items.sort(compareByDateDesc);
+      this.items?.sort(compareByDateDesc);
     } else if (event.field === 'viewsCount' && event.type === 'asc') {
-      this.result?.items.sort(
+      this.items?.sort(
         (a, b) =>
           Number(a.statistics.viewCount) - Number(b.statistics.viewCount)
       );
     } else {
-      this.result?.items.sort(
+      this.items?.sort(
         (a, b) =>
           Number(b.statistics.viewCount) - Number(a.statistics.viewCount)
       );
