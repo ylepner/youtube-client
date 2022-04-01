@@ -47,3 +47,4 @@ function compareByDateAsc(a: SearchResultItem, b: SearchResultItem) {
 function compareByDateDesc(a: SearchResultItem, b: SearchResultItem) {
   return compareByDateAsc(b, a);
 }
+

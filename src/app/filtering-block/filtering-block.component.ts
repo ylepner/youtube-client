@@ -10,7 +10,6 @@ export class FilteringBlockComponent {
 
   sorting?: Sorting;
 
-
   @Output()
   sortingChange = new EventEmitter<Sorting>();
 

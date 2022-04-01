@@ -1,9 +1,12 @@
+@import "theme.scss";
+
 .item-container {
   height: 130%;
   padding: 20px;
   background-color: #efefef;
   border-radius: 5px;
   width: 278px;
+  border-bottom: 5px solid;
 }
 
 .video {
