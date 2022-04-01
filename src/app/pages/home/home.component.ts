@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { SearchResultItem } from 'src/app/search/search-item.model';
-import { SearchVideoQuery, Sorting } from 'src/app/search/search-query.model';
+import { Sorting } from 'src/app/search/search-query.model';
 import { SearchResultList } from 'src/app/search/search-response.model';
 
 @Component({
@@ -13,9 +13,10 @@ export class HomeComponent {
   result?: SearchResultList;
 
   items?: SearchResultItem[];
-  constructor(private httpClient: HttpClient) {}
+  // eslint-disable-next-line no-unused-vars
+  constructor(private httpClient: HttpClient) { }
 
-  querySubmitted(event: SearchVideoQuery) {
+  querySubmitted() {
     this.httpClient
       .get<SearchResultList>('assets/data/data.json')
       .subscribe((r) => {
@@ -47,7 +48,6 @@ export class HomeComponent {
       this.items = this.result?.items;
       return;
     }
-    console.log(event);
     this.items = this.result?.items.filter((el) => {
       if (el.snippet.title.toLowerCase().includes(event.toLowerCase())) {
         return true;
