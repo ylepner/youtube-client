@@ -9,9 +9,21 @@ import { Field, Sorting } from '../search/search-query.model';
 export class FilteringBlockComponent {
 
   sorting?: Sorting;
+  private _filter?: string;
+
+  public get filter() {
+    return this._filter;
+  }
+  public set filter(value: string | undefined) {
+    this._filter = value;
+    this.filteringChange.next(value);
+  }
 
   @Output()
   sortingChange = new EventEmitter<Sorting>();
+
+  @Output()
+  filteringChange = new EventEmitter<string | undefined>();
 
   sortByDate() {
     this.updateSorting('date');
@@ -37,4 +49,9 @@ export class FilteringBlockComponent {
     this.sorting = sorting;
     this.sortingChange.next(sorting);
   }
+
+  filterChange(value: string) {
+    this.filteringChange.next(value);
+  }
+
 }

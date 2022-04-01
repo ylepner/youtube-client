@@ -18,6 +18,9 @@ export class HeaderComponent {
   @Output()
   sortingChange = new EventEmitter<Sorting>();
 
+  @Output()
+  filteringChange = new EventEmitter<string | undefined>();
+
   toggleFilters() {
     this.showFilters = !this.showFilters;
   }
@@ -28,5 +31,9 @@ export class HeaderComponent {
 
   sorting(event: Sorting) {
     this.sortingChange.next(event);
+  }
+
+  filtering(event: string | undefined) {
+    this.filteringChange.next(event);
   }
 }

@@ -12,12 +12,14 @@ import { SearchResultList } from 'src/app/search/search-response.model';
 export class HomeComponent {
   result?: SearchResultList;
 
+  items?: SearchResultItem[];
   constructor(private httpClient: HttpClient) {
   }
 
   querySubmitted(event: SearchVideoQuery) {
     this.httpClient.get<SearchResultList>('assets/data/data.json').subscribe(r => {
       this.result = r;
+      this.items = this.result.items;
     })
   }
 
@@ -35,6 +37,21 @@ export class HomeComponent {
     else {
       this.result?.items.sort((a, b) => Number(b.statistics.viewCount) - Number(a.statistics.viewCount));
     }
+  }
+
+  filteringChange(event: string | undefined) {
+    if (!event) {
+      this.items = this.result?.items;
+      return
+    }
+    console.log(event);
+    this.items = this.result?.items.filter((el) => {
+
+      if (el.snippet.title.toLowerCase().includes(event.toLowerCase())) {
+        return true;
+      }
+      return false;
+    })
   }
 }
 

@@ -3,5 +3,5 @@
   <button (click)="sortByDate()" [class.active]="sorting?.field === 'date'">date</button>
   <button (click)="sortByViews()" [class.active]="sorting?.field === 'viewsCount'">count of views</button>
   <button>by word or sentence</button>
-  <input type="text" name="" id="">
+  <input [(ngModel)]="filter" type="text">
 </div>

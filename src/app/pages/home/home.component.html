@@ -1,5 +1,6 @@
-<app-header (querySubmitted)="querySubmitted($event)" (sortingChange)="sortingChange($event)"></app-header>
+<app-header (querySubmitted)="querySubmitted($event)" (sortingChange)="sortingChange($event)"
+  (filteringChange)="filteringChange($event)"></app-header>
 
 <div class="container mx-auto">
-  <app-search-results [items]="result?.items"></app-search-results>
+  <app-search-results [items]="items"></app-search-results>
 </div>
