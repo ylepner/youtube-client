@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { SortOrder } from 'src/app/search/common/constants';
+import { SortingType, SortOrder } from 'src/app/search/common/constants';
 import { SearchResultItem } from 'src/app/search/search-item.model';
 import { Sorting } from 'src/app/search/search-query.model';
 import { SearchResultList } from 'src/app/search/search-response.model';
@@ -12,10 +12,10 @@ import { SearchResultList } from 'src/app/search/search-response.model';
 })
 export class HomeComponent {
   result?: SearchResultList;
-
   items?: SearchResultItem[];
   // eslint-disable-next-line no-unused-vars
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   querySubmitted() {
     this.httpClient
@@ -27,11 +27,11 @@ export class HomeComponent {
   }
 
   sortingChange(event: Sorting) {
-    if (event.field === 'date' && event.sortOrder === SortOrder.Asc) {
+    if (event.field === SortingType.Date && event.sortOrder === SortOrder.Asc) {
       this.items?.sort(compareByDateAsc);
-    } else if (event.field === 'date' && event.sortOrder === SortOrder.Desc) {
+    } else if (event.field === SortingType.Date && event.sortOrder === SortOrder.Desc) {
       this.items?.sort(compareByDateDesc);
-    } else if (event.field === 'viewsCount' && event.sortOrder === SortOrder.Asc) {
+    } else if (event.field === SortingType.ViewsCount && event.sortOrder === SortOrder.Asc) {
       this.items?.sort(
         (a, b) =>
           Number(a.statistics.viewCount) - Number(b.statistics.viewCount)

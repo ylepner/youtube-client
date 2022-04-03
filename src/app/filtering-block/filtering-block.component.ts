@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { SortOrder } from '../search/common/constants';
-import { Field, Sorting } from '../search/search-query.model';
+import { SortingType, SortOrder } from '../search/common/constants';
+import { Sorting } from '../search/search-query.model';
 
 @Component({
   selector: 'app-filtering-block',
@@ -26,14 +26,14 @@ export class FilteringBlockComponent {
   filteringChange = new EventEmitter<string | undefined>();
 
   sortByDate() {
-    this.updateSorting('date');
+    this.updateSorting(SortingType.Date);
   }
 
   sortByViews() {
-    this.updateSorting('viewsCount');
+    this.updateSorting(SortingType.ViewsCount);
   }
 
-  updateSorting(field: Field) {
+  updateSorting(field: SortingType) {
     if (!this.sorting) {
       this.setSorting({ field: field, sortOrder: SortOrder.Asc });
     } else if (field !== this.sorting.field) {
