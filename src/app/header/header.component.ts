@@ -8,7 +8,6 @@ import { SearchVideoQuery, Sorting } from '../search/search-query.model';
 })
 export class HeaderComponent {
   showFilters = false;
-  // привязать это значение к инпуту через ngModel в две стороны
   searchQuery: SearchVideoQuery = {};
 
   @Output()
