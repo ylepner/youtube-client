@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { SortOrder } from 'src/app/search/common/constants';
 import { SearchResultItem } from 'src/app/search/search-item.model';
 import { Sorting } from 'src/app/search/search-query.model';
 import { SearchResultList } from 'src/app/search/search-response.model';
@@ -26,11 +27,11 @@ export class HomeComponent {
   }
 
   sortingChange(event: Sorting) {
-    if (event.field === 'date' && event.sortOrder === 'asc') {
+    if (event.field === 'date' && event.sortOrder === SortOrder.Asc) {
       this.items?.sort(compareByDateAsc);
-    } else if (event.field === 'date' && event.sortOrder === 'desc') {
+    } else if (event.field === 'date' && event.sortOrder === SortOrder.Desc) {
       this.items?.sort(compareByDateDesc);
-    } else if (event.field === 'viewsCount' && event.sortOrder === 'asc') {
+    } else if (event.field === 'viewsCount' && event.sortOrder === SortOrder.Asc) {
       this.items?.sort(
         (a, b) =>
           Number(a.statistics.viewCount) - Number(b.statistics.viewCount)

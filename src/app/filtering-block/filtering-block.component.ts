@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { SortOrder } from '../search/common/constants';
 import { Field, Sorting } from '../search/search-query.model';
 
 @Component({
@@ -34,13 +35,13 @@ export class FilteringBlockComponent {
 
   updateSorting(field: Field) {
     if (!this.sorting) {
-      this.setSorting({ field: field, sortOrder: 'asc' });
+      this.setSorting({ field: field, sortOrder: SortOrder.Asc });
     } else if (field !== this.sorting.field) {
-      this.setSorting({ field: field, sortOrder: 'asc' });
+      this.setSorting({ field: field, sortOrder: SortOrder.Asc });
     } else {
       this.setSorting({
         field: field,
-        sortOrder: this.sorting.sortOrder === 'asc' ? 'desc' : 'asc',
+        sortOrder: this.sorting.sortOrder === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc,
       });
     }
   }
