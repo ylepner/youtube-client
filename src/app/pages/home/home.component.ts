@@ -11,8 +11,8 @@ import { SearchResultList } from 'src/app/search/search-response.model';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  result?: SearchResultList;
-  items?: SearchResultItem[];
+  result: SearchResultList | undefined;
+  items: SearchResultItem[] | undefined;
   // eslint-disable-next-line no-unused-vars
   constructor(private httpClient: HttpClient) {
   }
@@ -22,7 +22,7 @@ export class HomeComponent {
       .get<SearchResultList>('assets/data/data.json')
       .subscribe((r) => {
         this.result = r;
-        this.items = this.result.items;
+        this.items = this.result?.items ?? [];
       });
   }
 
