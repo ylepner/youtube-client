@@ -34,13 +34,13 @@ export class FilteringBlockComponent {
 
   updateSorting(field: Field) {
     if (!this.sorting) {
-      this.setSorting({ field: field, type: 'asc' });
+      this.setSorting({ field: field, sortOrder: 'asc' });
     } else if (field !== this.sorting.field) {
-      this.setSorting({ field: field, type: 'asc' });
+      this.setSorting({ field: field, sortOrder: 'asc' });
     } else {
       this.setSorting({
         field: field,
-        type: this.sorting.type === 'asc' ? 'desc' : 'asc',
+        sortOrder: this.sorting.sortOrder === 'asc' ? 'desc' : 'asc',
       });
     }
   }

@@ -5,7 +5,7 @@ export interface SearchVideoQuery {
 //export type Sorting = 'date' | 'viewsCount';
 export interface Sorting {
   field: Field;
-  type: SortingType;
+  sortOrder: SortingType;
 }
 export type Field = 'date' | 'viewsCount';
 export type SortingType = 'asc' | 'desc';
