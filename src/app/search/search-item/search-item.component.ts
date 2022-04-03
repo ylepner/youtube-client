@@ -6,7 +6,7 @@ import { SearchResultItem } from '../search-item.model';
   styleUrls: ['./search-item.component.scss'],
 })
 export class SearchItemComponent {
-  stripeColor?: string;
+  stripeClass: string = '';
 
   private _item?: SearchResultItem;
   public get item() {
@@ -22,13 +22,13 @@ export class SearchItemComponent {
     }
     const days = getDaysOfPublished(value.snippet.publishedAt);
     if (days <= 7) {
-      this.stripeColor = '#2F80ED';
+      this.stripeClass = 'blue';
     } else if (days <= 30) {
-      this.stripeColor = '#27AE60';
+      this.stripeClass = 'green';
     } else if (days <= 180) {
-      this.stripeColor = '#F2C94C';
+      this.stripeClass = 'yellow';
     } else {
-      this.stripeColor = '#EB5757';
+      this.stripeClass = 'red';
     }
   }
 }
