@@ -1,5 +1,14 @@
+/* eslint-disable no-unused-vars */
 import { Component, Input } from '@angular/core';
 import { SearchResultItem } from '../search-item.model';
+
+enum StripeColor {
+  Blue = 'blue',
+  Green = 'green',
+  Yellow = 'yellow',
+  Red = 'red',
+}
+
 @Component({
   selector: 'app-search-item',
   templateUrl: './search-item.component.html',
@@ -22,13 +31,13 @@ export class SearchItemComponent {
     }
     const days = getDaysOfPublished(value.snippet.publishedAt);
     if (days <= 7) {
-      this.stripeClass = 'blue';
+      this.stripeClass = StripeColor.Blue;
     } else if (days <= 30) {
-      this.stripeClass = 'green';
+      this.stripeClass = StripeColor.Green;
     } else if (days <= 180) {
-      this.stripeClass = 'yellow';
+      this.stripeClass = StripeColor.Yellow;
     } else {
-      this.stripeClass = 'red';
+      this.stripeClass = StripeColor.Red;
     }
   }
 }
