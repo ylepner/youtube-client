@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { SearchVideoQuery, Sorting } from '../search/search-query.model';
+import { SearchVideoQuery, Sorting } from '../../../youtube/models/search-query.model';
 
 @Component({
   selector: 'app-header',

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { SortingType, SortOrder } from 'src/app/search/common/constants';
-import { SearchResultItem } from 'src/app/search/search-item.model';
-import { Sorting } from 'src/app/search/search-query.model';
-import { SearchResultList } from 'src/app/search/search-response.model';
+import { SortingType, SortOrder } from 'src/app/youtube/models/constants';
+import { SearchResultItem } from 'src/app/youtube/models/search-item.model';
+import { Sorting } from 'src/app/youtube/models/search-query.model';
+import { SearchResultList } from 'src/app/youtube/models/search-response.model';
 
 @Component({
   selector: 'app-home',
