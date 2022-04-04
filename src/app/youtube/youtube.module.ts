@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DetailedInfoComponent } from './pages/detailed-info/detailed-info.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DetailedInfoComponent
+  ],
   imports: [
     CommonModule
   ]
