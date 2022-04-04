@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { SortingType, SortOrder } from 'src/app/youtube/models/constants';
+import { SortingType, SortOrder } from 'src/app/shared/models/constants';
 import { SearchResultItem } from 'src/app/youtube/models/search-item.model';
-import { Sorting } from 'src/app/youtube/models/search-query.model';
+import { Sorting } from 'src/app/shared/models/search-query.model';
 import { SearchResultList } from 'src/app/youtube/models/search-response.model';
 
 @Component({

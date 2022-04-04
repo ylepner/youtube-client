@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { SortingType, SortOrder } from '../../models/constants';
-import { Sorting } from '../../models/search-query.model';
+import { SortingType, SortOrder } from '../../../shared/models/constants';
+import { Sorting } from '../../../shared/models/search-query.model';
 
 @Component({
   selector: 'app-filtering-block',
