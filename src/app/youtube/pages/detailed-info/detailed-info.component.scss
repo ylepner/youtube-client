@@ -1,0 +1,41 @@
+@import "theme.scss";
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card-date {
+  font-size: 12px;
+  color: #828282;
+}
+
+.description-title {
+  font-size: 16px;
+}
+
+.description-text {
+  font-size: 14px;
+  color: #828282;
+}
+
+.card-info {
+  border-bottom: 4px solid $primary-color;
+  background-color: #E5E5E5;
+  width: 40%;
+}
+
+.card-title-date {
+  align-items: baseline;
+}
+
+.card-statistic {
+  justify-content: space-evenly;
+  bottom: 5%;
+  left: 20%;
+  right: 20%;
+}
+
+.back-btn {
+  background-color: $primary-color;
+  color: white;
+}
