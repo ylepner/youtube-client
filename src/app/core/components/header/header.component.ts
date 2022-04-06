@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { SearchVideoQuery, Sorting } from '../../../shared/models/search-query.model';
+import { YoutubeService } from '../../services/youtube.service';
 
 @Component({
   selector: 'app-header',
@@ -10,28 +11,23 @@ export class HeaderComponent {
   showFilters = false;
   searchQuery: SearchVideoQuery = {};
 
-  @Output()
-  querySubmitted = new EventEmitter<SearchVideoQuery>();
+  constructor(private youtubeService: YoutubeService) {
 
-  @Output()
-  sortingChange = new EventEmitter<Sorting>();
-
-  @Output()
-  filteringChange = new EventEmitter<string | undefined>();
+  }
 
   toggleFilters() {
     this.showFilters = !this.showFilters;
   }
 
   submit() {
-    this.querySubmitted.next(this.searchQuery);
+    this.youtubeService.submitQuery(this.searchQuery.searchText || '')
   }
 
   sorting(event: Sorting) {
-    this.sortingChange.next(event);
+    this.youtubeService.changeSorting(event)
   }
 
   filtering(event: string | undefined) {
-    this.filteringChange.next(event);
+    this.youtubeService.changeFiltering(event || '');
   }
 }
