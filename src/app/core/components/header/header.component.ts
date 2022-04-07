@@ -11,8 +11,8 @@ export class HeaderComponent {
   showFilters = false;
   searchQuery: SearchVideoQuery = {};
 
+  // eslint-disable-next-line no-unused-vars
   constructor(private youtubeService: YoutubeService) {
-
   }
 
   toggleFilters() {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -13,14 +14,18 @@ export class LoginPageComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,) {
+    private router: Router,
+    private service: AuthService
+  ) {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  login() {
-    if (this.userName === 'admin' && this.password === '123') {
-      localStorage.setItem('currentUser', 'foo')
-      this.router.navigate([this.returnUrl])
+  async login() {
+    const result = await this.service.login(this.userName ?? '', this.password ?? '')
+    if (result) {
+      this.router.navigate(['home'])
+    } else {
+      alert('Wrong user name or password')
     }
   }
 }
