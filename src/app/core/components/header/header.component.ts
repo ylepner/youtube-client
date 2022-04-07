@@ -30,4 +30,5 @@ export class HeaderComponent {
   filtering(event: string | undefined) {
     this.youtubeService.changeFiltering(event || '');
   }
+
 }
