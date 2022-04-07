@@ -8,27 +8,16 @@ import { DetailedInfoComponent } from './youtube/pages/detailed-info/detailed-in
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./youtube/youtube.module').then(m => m.YoutubeModule)
+    loadChildren: () => import('./youtube/youtube.module').then(m => m.YoutubeModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
-
-  {
-    path: 'home',
-    component: HomeComponent,
-    // canActivate: [AuthGuard]
-  },
   {
     path: '404',
     component: Page404Component,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'detailed',
-    component: DetailedInfoComponent,
-    // canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: 'auth/login' },
 ];
