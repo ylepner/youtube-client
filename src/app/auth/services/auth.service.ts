@@ -18,4 +18,11 @@ export class AuthService {
   logOut() {
     localStorage.clear();
   }
+
+  isLogedIn() {
+    if (localStorage.getItem('currentUser')) {
+      return true
+    }
+    return false
+  }
 }

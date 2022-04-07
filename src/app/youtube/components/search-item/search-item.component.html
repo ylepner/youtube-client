@@ -24,6 +24,7 @@
     {{item?.snippet?.title}}
   </div>
   <div class="btn-container">
-    <button class="blue-btn more-btn">more...</button>
+    <a [routerLink]="'/detailed/' + item?.id " class="blue-btn more-btn">more...</a>
   </div>
+
 </div>

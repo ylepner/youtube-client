@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/services/auth.guard';
 import { Page404Component } from './core/pages/page404/page404.component';
-import { HomeComponent } from './youtube/pages/home/home.component';
-import { DetailedInfoComponent } from './youtube/pages/detailed-info/detailed-info.component';
 
 const routes: Routes = [
   {
@@ -19,7 +17,7 @@ const routes: Routes = [
     path: '404',
     component: Page404Component,
   },
-  { path: '**', redirectTo: 'auth/login' },
+  { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({

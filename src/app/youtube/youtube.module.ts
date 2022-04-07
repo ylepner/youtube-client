@@ -14,7 +14,7 @@ import { HomeComponent } from './pages/home/home.component';
     CommonModule,
     RouterModule.forChild([
       { path: 'home', component: HomeComponent },
-      { path: 'detailed', component: DetailedInfoComponent }
+      { path: 'detailed/:id', component: DetailedInfoComponent }
     ])
   ],
   exports: [RouterModule]

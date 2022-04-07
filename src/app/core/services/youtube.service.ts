@@ -35,8 +35,6 @@ export class YoutubeService {
     })
   )
 
-  result: SearchResultList | undefined;
-  items: SearchResultItem[] | undefined;
   // eslint-disable-next-line no-unused-vars
   constructor(private httpClient: HttpClient) {
   }
@@ -51,6 +49,12 @@ export class YoutubeService {
 
   changeFiltering(filtering: string) {
     this.filter$.next(filtering);
+  }
+
+  getById(id: string) {
+    return this.items$.pipe(
+      map((items) => items.find((item) => item.id === id))
+    )
   }
 }
 
