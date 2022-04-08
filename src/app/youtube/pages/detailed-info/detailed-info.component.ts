@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap } from 'rxjs';
@@ -14,13 +15,11 @@ export class DetailedInfoComponent implements OnDestroy {
   item$ = this.router.params.pipe(
     map((params) => params['id'] as string),
     switchMap((id) => this.service.getById(id)),
-    // tap(x => console.log('3', x)),
   );
   subscription: Subscription;
   constructor(private router: ActivatedRoute, private service: YoutubeService) {
     this.subscription = this.item$.subscribe((item) => {
       this.item = item;
-      console.log(this.item)
     })
   }
   ngOnDestroy(): void {

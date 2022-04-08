@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, Subject, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Subject, switchMap } from 'rxjs';
 import { SortingType, SortOrder } from 'src/app/shared/models/constants';
 import { SearchResultItem } from 'src/app/shared/models/search-item.model';
 import { Sorting } from 'src/app/shared/models/search-query.model';
@@ -10,11 +10,6 @@ import { SearchResultList } from 'src/app/shared/models/search-response.model';
   providedIn: 'root'
 })
 export class YoutubeService {
-
-
-
-  // создаем потоки rxjs
-  // subject нет начального значения, пока не кликнул кнопку ничего не происходит
   private readonly searchText$ = new Subject<string>();
   private readonly items$ = this.searchText$.pipe(
     switchMap((text) => this.httpClient
@@ -27,7 +22,6 @@ export class YoutubeService {
 
   readonly itemsResult$ = combineLatest([this.items$, this.sorting$, this.filter$]).pipe(
 
-    // деструктуризация 
     map(([items, sorting, filtering]) => {
       if (sorting) {
         items = sortBy(items, sorting);

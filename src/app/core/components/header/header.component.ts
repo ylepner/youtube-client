@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { SearchVideoQuery, Sorting } from '../../../shared/models/search-query.model';
 import { YoutubeService } from '../../services/youtube.service';
 

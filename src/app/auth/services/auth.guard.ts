@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -14,7 +15,6 @@ export class AuthGuard implements CanActivate {
     if (this.service.isLogedIn()) {
       return true;
     }
-    debugger
     this.router.navigate(['auth/login'], { queryParams: { returnUrl: state.url } });
     return false;
   }

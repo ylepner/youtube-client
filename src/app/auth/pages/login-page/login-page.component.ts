@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -25,6 +26,7 @@ export class LoginPageComponent {
     if (result) {
       this.router.navigate(['home'])
     } else {
+      // eslint-disable-next-line no-undef
       alert('Wrong user name or password')
     }
   }
