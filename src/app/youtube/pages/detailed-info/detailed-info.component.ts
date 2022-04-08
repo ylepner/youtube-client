@@ -13,13 +13,14 @@ export class DetailedInfoComponent implements OnDestroy {
   item: SearchResultItem | undefined;
   item$ = this.router.params.pipe(
     map((params) => params['id'] as string),
-    switchMap((id) => this.service.getById(id))
+    switchMap((id) => this.service.getById(id)),
+    // tap(x => console.log('3', x)),
   );
   subscription: Subscription;
-  // ActivatedRouteSnapshot актуальное состояние роутера
   constructor(private router: ActivatedRoute, private service: YoutubeService) {
     this.subscription = this.item$.subscribe((item) => {
       this.item = item;
+      console.log(this.item)
     })
   }
   ngOnDestroy(): void {

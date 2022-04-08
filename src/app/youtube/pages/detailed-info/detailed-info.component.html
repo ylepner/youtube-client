@@ -1,36 +1,36 @@
 <div class="detailed-container flex px-12 py-10" *ngIf="item">
-  <button class="flex">
+  <button [routerLink]="'/home'" class="flex">
     <img src="assets/img/back_button.jpg" alt="back">
   </button>
   <div>
-    <img src="https://static.bntu.by/bntu/new/news/uploads/fast/%D0%BA%D1%83%D0%B4%D0%B6%D0%B8.jpg" alt="video card">
+    <img src={{item.snippet.thumbnails.maxres.url}} alt="video card">
   </div>
   <div class="card-info p-8 relative">
     <div class="card-title-date flex justify-between">
-      <div class="card-title">Kuji Podkast #20</div>
-      <div class="card-date">Thusday, December 20, 2019</div>
+      <div class="card-title">{{item.snippet.title}}</div>
+      <div class="card-date">{{item.snippet.publishedAt | date:'fullDate'}}</div>
     </div>
     <div class="card-description py-8">
       <h1 class="description-title">Description:</h1>
       <p class="description-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum.</p>
+        {{item.snippet.description}}</p>
     </div>
     <div class="card-statistic flex absolute">
       <div class="view-info flex">
-        <img src="assets/svg/viewed.svg" alt="">1000
+        <img src="assets/svg/viewed.svg" alt="view count">
+        {{item?.statistics?.viewCount}}
       </div>
       <div class="likes flex">
-        <img src="assets/svg/liked.svg" alt="">680
+        <img src="assets/svg/liked.svg" alt="likes">
+        {{item?.statistics?.likeCount}}
       </div>
       <div class="dislikes flex">
-        <img src="assets/svg/dislike.svg" alt="">320
+        <img src="assets/svg/dislike.svg" alt="dislikes">
+        {{item?.statistics?.dislikeCount}}
       </div>
       <div class="comments flex">
-        <img src="assets/svg/group9.svg" alt="">250
+        <img src="assets/svg/group9.svg" alt="comments">
+        {{item?.statistics?.commentCount}}
       </div>
     </div>
   </div>
