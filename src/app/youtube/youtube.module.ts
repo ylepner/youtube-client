@@ -3,12 +3,17 @@ import { CommonModule } from '@angular/common';
 import { DetailedInfoComponent } from './pages/detailed-info/detailed-info.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { SearchItemComponent } from './components/search-item/search-item.component';
 
 
 
 @NgModule({
   declarations: [
-    DetailedInfoComponent
+    DetailedInfoComponent,
+    SearchResultsComponent,
+    SearchItemComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,

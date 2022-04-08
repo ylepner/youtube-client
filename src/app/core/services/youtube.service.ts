@@ -11,6 +11,8 @@ import { SearchResultList } from 'src/app/shared/models/search-response.model';
 })
 export class YoutubeService {
 
+
+
   // создаем потоки rxjs
   // subject нет начального значения, пока не кликнул кнопку ничего не происходит
   private readonly searchText$ = new Subject<string>();
@@ -51,8 +53,15 @@ export class YoutubeService {
     this.filter$.next(filtering);
   }
 
+  getAllItems() {
+    return this.httpClient
+      .get<SearchResultList>(`assets/data/data.json`).pipe(
+        map((result) => result.items)
+      )
+  }
+
   getById(id: string) {
-    return this.items$.pipe(
+    return this.getAllItems().pipe(
       map((items) => items.find((item) => item.id === id))
     )
   }
