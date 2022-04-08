@@ -1,1 +1,6 @@
-<p>home works!</p>
+<app-header (querySubmitted)="querySubmitted()" (sortingChange)="sortingChange($event)"
+  (filteringChange)="filteringChange($event)"></app-header>
+
+<div class="container mx-auto">
+  <app-search-results [items]="items"></app-search-results>
+</div>

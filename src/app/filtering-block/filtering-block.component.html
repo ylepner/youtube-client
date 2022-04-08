@@ -1,0 +1,9 @@
+<div class="filtering-container roboto p-3 flex">
+  Sorting by:
+  <button (click)="sortByDate()" [class.active]="sorting?.field === 'date'">date</button>
+  <button (click)="sortByViews()" [class.active]="sorting?.field === 'viewsCount'">count of views</button>
+  <div class="flex flex-row-reverse">
+    <input [(ngModel)]="filter" type="text" #filterInput>
+    <button (click)="filterInput.focus()">by word or sentence</button>
+  </div>
+</div>

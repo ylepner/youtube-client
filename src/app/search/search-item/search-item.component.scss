@@ -1,0 +1,66 @@
+@import "theme.scss";
+
+.item-container {
+  height: 380px;
+  padding: 20px;
+  background-color: #efefef;
+  border-radius: 5px;
+  width: 278px;
+  border-bottom: 5px solid;
+}
+
+.video {
+  display: flex;
+  justify-content: center;
+  height: 40%;
+}
+
+.statistics {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  font-family: "Open Sans", sans-serif;
+  flex-grow: 1;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.more-btn {
+  background-color: #2f80ed;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  bottom: 20px;
+  padding: 0 30px;
+}
+
+img {
+  padding: 0 5px;
+}
+
+.blue {
+  border-bottom-color: #2F80ED;
+}
+
+.green {
+  border-bottom-color: #27AE60;
+}
+
+.yellow {
+  border-bottom-color: #F2C94C;
+}
+
+.red {
+  border-bottom-color: #EB5757;
+}
