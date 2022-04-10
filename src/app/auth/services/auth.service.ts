@@ -6,8 +6,6 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  constructor() { }
-
   login(userName: string, password: string) {
     if (userName === 'admin' && password === '123') {
       localStorage.setItem('currentUser', 'foo');
