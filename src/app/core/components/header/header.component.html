@@ -6,8 +6,8 @@
       alt=""></button>
   <div class="login-block absolute flex">
     Your Name
-    <a routerLink="auth/login">
-      <img class="px-2" src="assets/svg/login.svg" alt="login">
+    <a routerLink="/auth/login">
+      <img class="px-2 cursor-pointer" src="assets/svg/login.svg" alt="login">
     </a>
   </div>
   <app-filtering-block (sortingChange)="sorting($event)" (filteringChange)="filtering($event)" *ngIf="showFilters">
