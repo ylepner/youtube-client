@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap } from 'rxjs';
 import { YoutubeService } from 'src/app/core/services/youtube.service';
 import { SearchResultItem } from 'src/app/shared/models/search-item.model';
-import { getDaysOfPublished, getColorOfItem } from '../../services/utils';
+import { getColorOfItem } from '../../services/utils';
 
 @Component({
   selector: 'app-detailed-info',
