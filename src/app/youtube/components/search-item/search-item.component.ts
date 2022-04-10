@@ -1,13 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Component, Input } from '@angular/core';
 import { SearchResultItem } from '../../../shared/models/search-item.model';
-
-enum StripeColor {
-  Blue = 'blue',
-  Green = 'green',
-  Yellow = 'yellow',
-  Red = 'red',
-}
+import { getDaysOfPublished, getColorOfItem } from '../../services/utils';
 
 @Component({
   selector: 'app-search-item',
@@ -30,22 +24,6 @@ export class SearchItemComponent {
       return;
     }
     const days = getDaysOfPublished(value.snippet.publishedAt);
-    if (days <= 7) {
-      this.stripeClass = StripeColor.Blue;
-    } else if (days <= 30) {
-      this.stripeClass = StripeColor.Green;
-    } else if (days <= 180) {
-      this.stripeClass = StripeColor.Yellow;
-    } else {
-      this.stripeClass = StripeColor.Red;
-    }
+    this.stripeClass = getColorOfItem(this._item);
   }
-}
-
-function getDaysOfPublished(date: string) {
-  const now = new Date();
-  const datePrev = new Date(date);
-  const differenceInDays =
-    (now.getTime() - datePrev.getTime()) / (1000 * 3600 * 24);
-  return differenceInDays;
 }

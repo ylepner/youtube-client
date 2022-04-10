@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap } from 'rxjs';
 import { YoutubeService } from 'src/app/core/services/youtube.service';
 import { SearchResultItem } from 'src/app/shared/models/search-item.model';
+import { getDaysOfPublished, getColorOfItem } from '../../services/utils';
 
 @Component({
   selector: 'app-detailed-info',
@@ -12,6 +13,8 @@ import { SearchResultItem } from 'src/app/shared/models/search-item.model';
 })
 export class DetailedInfoComponent implements OnDestroy {
   item: SearchResultItem | undefined;
+  date: string | undefined;
+  stripeClass = '';
   item$ = this.router.params.pipe(
     map((params) => params['id'] as string),
     switchMap((id) => this.service.getById(id)),
@@ -24,6 +27,10 @@ export class DetailedInfoComponent implements OnDestroy {
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
+  }
+
+  setColorStrip() {
+    this.stripeClass = getColorOfItem(this.item);
   }
 
 }
