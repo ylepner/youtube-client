@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Injectable } from '@angular/core';
 
 @Injectable({

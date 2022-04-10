@@ -1,5 +1,5 @@
+/* eslint-disable no-undef */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FilteringBlockComponent } from './filtering-block.component';
 
 describe('FilteringBlockComponent', () => {
