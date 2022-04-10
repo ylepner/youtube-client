@@ -1,4 +1,4 @@
-import { SearchResultItem } from "src/app/shared/models/search-item.model";
+import { SearchResultItem } from 'src/app/shared/models/search-item.model';
 
 /* eslint-disable no-unused-vars */
 export enum StripeColor {
@@ -9,7 +9,7 @@ export enum StripeColor {
 }
 
 export function getColorOfItem(item: SearchResultItem | undefined) {
-  const days = getDaysOfPublished(item?.snippet.publishedAt)
+  const days = getDaysOfPublished(item?.snippet.publishedAt);
   if (days) {
     if (days <= 7) {
       return StripeColor.Blue;

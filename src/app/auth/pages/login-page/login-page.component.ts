@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent {
   returnUrl: string | undefined;
@@ -22,12 +22,15 @@ export class LoginPageComponent {
   }
 
   async login() {
-    const result = await this.service.login(this.userName ?? '', this.password ?? '')
+    const result = await this.service.login(
+      this.userName ?? '',
+      this.password ?? ''
+    );
     if (result) {
-      this.router.navigate(['home'])
+      this.router.navigate(['home']);
     } else {
       // eslint-disable-next-line no-undef
-      alert('Wrong user name or password')
+      alert('Wrong user name or password');
     }
   }
 }

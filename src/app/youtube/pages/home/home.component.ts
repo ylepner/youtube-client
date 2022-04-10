@@ -9,7 +9,5 @@ import { YoutubeService } from 'src/app/core/services/youtube.service';
 export class HomeComponent {
   items$ = this.youtubeService.itemsResult$;
   // eslint-disable-next-line no-unused-vars
-  constructor(private youtubeService: YoutubeService) {
-  }
-
+  constructor(private youtubeService: YoutubeService) { }
 }

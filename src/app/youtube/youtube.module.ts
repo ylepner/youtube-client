@@ -6,8 +6,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { SearchItemComponent } from './components/search-item/search-item.component';
 
-
-
 @NgModule({
   declarations: [
     DetailedInfoComponent,
@@ -19,9 +17,9 @@ import { SearchItemComponent } from './components/search-item/search-item.compon
     CommonModule,
     RouterModule.forChild([
       { path: 'home', component: HomeComponent },
-      { path: 'detailed/:id', component: DetailedInfoComponent }
-    ])
+      { path: 'detailed/:id', component: DetailedInfoComponent },
+    ]),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class YoutubeModule { }

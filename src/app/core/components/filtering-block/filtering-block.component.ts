@@ -41,7 +41,10 @@ export class FilteringBlockComponent {
     } else {
       this.setSorting({
         field: field,
-        sortOrder: this.sorting.sortOrder === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc,
+        sortOrder:
+          this.sorting.sortOrder === SortOrder.Asc
+            ? SortOrder.Desc
+            : SortOrder.Asc,
       });
     }
   }

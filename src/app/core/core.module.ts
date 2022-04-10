@@ -7,16 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    Page404Component,
-    HeaderComponent,
-    FilteringBlockComponent
-  ],
-  imports: [
-    CommonModule, FormsModule, RouterModule
-  ],
-  exports: [
-    HeaderComponent
-  ]
+  declarations: [Page404Component, HeaderComponent, FilteringBlockComponent],
+  imports: [CommonModule, FormsModule, RouterModule],
+  exports: [HeaderComponent],
 })
 export class CoreModule { }

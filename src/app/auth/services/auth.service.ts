@@ -2,16 +2,15 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   login(userName: string, password: string) {
     if (userName === 'admin' && password === '123') {
       localStorage.setItem('currentUser', 'foo');
-      return Promise.resolve('token')
+      return Promise.resolve('token');
     }
-    return Promise.resolve(null)
+    return Promise.resolve(null);
   }
 
   logOut() {
@@ -20,8 +19,8 @@ export class AuthService {
 
   isLogedIn() {
     if (localStorage.getItem('currentUser')) {
-      return true
+      return true;
     }
-    return false
+    return false;
   }
 }

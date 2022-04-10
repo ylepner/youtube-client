@@ -7,21 +7,28 @@ import { Sorting } from 'src/app/shared/models/search-query.model';
 import { SearchResultList } from 'src/app/shared/models/search-response.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class YoutubeService {
   private readonly searchText$ = new Subject<string>();
   private readonly items$ = this.searchText$.pipe(
-    switchMap((text) => this.httpClient
-      .get<SearchResultList>(`assets/data/data.json?query=${text}`)
+    switchMap((text) =>
+      this.httpClient.get<SearchResultList>(
+        `assets/data/data.json?query=${text}`
+      )
     ),
-    map(result => result.items)
+    map((result) => result.items)
   );
-  private readonly sorting$ = new BehaviorSubject<Sorting | undefined>(undefined);
+  private readonly sorting$ = new BehaviorSubject<Sorting | undefined>(
+    undefined
+  );
   private readonly filter$ = new BehaviorSubject<string>('');
 
-  readonly itemsResult$ = combineLatest([this.items$, this.sorting$, this.filter$]).pipe(
-
+  readonly itemsResult$ = combineLatest([
+    this.items$,
+    this.sorting$,
+    this.filter$,
+  ]).pipe(
     map(([items, sorting, filtering]) => {
       if (sorting) {
         items = sortBy(items, sorting);
@@ -29,11 +36,10 @@ export class YoutubeService {
       items = filter(items, filtering);
       return items;
     })
-  )
+  );
 
   // eslint-disable-next-line no-unused-vars
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) { }
 
   submitQuery(text: string) {
     this.searchText$.next(text);
@@ -49,15 +55,14 @@ export class YoutubeService {
 
   getAllItems() {
     return this.httpClient
-      .get<SearchResultList>(`assets/data/data.json`).pipe(
-        map((result) => result.items)
-      )
+      .get<SearchResultList>(`assets/data/data.json`)
+      .pipe(map((result) => result.items));
   }
 
   getById(id: string) {
     return this.getAllItems().pipe(
       map((items) => items.find((item) => item.id === id))
-    )
+    );
   }
 }
 
@@ -73,19 +78,26 @@ function compareByDateDesc(a: SearchResultItem, b: SearchResultItem) {
 
 function sortBy(items: SearchResultItem[], sorting: Sorting) {
   items = [...items];
-  if (sorting.field === SortingType.Date && sorting.sortOrder === SortOrder.Asc) {
+  if (
+    sorting.field === SortingType.Date &&
+    sorting.sortOrder === SortOrder.Asc
+  ) {
     items.sort(compareByDateAsc);
-  } else if (sorting.field === SortingType.Date && sorting.sortOrder === SortOrder.Desc) {
+  } else if (
+    sorting.field === SortingType.Date &&
+    sorting.sortOrder === SortOrder.Desc
+  ) {
     items.sort(compareByDateDesc);
-  } else if (sorting.field === SortingType.ViewsCount && sorting.sortOrder === SortOrder.Asc) {
+  } else if (
+    sorting.field === SortingType.ViewsCount &&
+    sorting.sortOrder === SortOrder.Asc
+  ) {
     items.sort(
-      (a, b) =>
-        Number(a.statistics.viewCount) - Number(b.statistics.viewCount)
+      (a, b) => Number(a.statistics.viewCount) - Number(b.statistics.viewCount)
     );
   } else {
     items.sort(
-      (a, b) =>
-        Number(b.statistics.viewCount) - Number(a.statistics.viewCount)
+      (a, b) => Number(b.statistics.viewCount) - Number(a.statistics.viewCount)
     );
   }
   return items;

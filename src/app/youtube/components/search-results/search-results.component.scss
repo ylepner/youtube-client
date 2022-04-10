@@ -1,4 +1,7 @@
 .search-result-container {
   gap: 7.5rem;
-  @apply flex m-8 flex-wrap justify-center;
+  display: flex;
+  margin: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
 }

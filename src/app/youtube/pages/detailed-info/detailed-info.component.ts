@@ -9,7 +9,7 @@ import { getColorOfItem } from '../../services/utils';
 @Component({
   selector: 'app-detailed-info',
   templateUrl: './detailed-info.component.html',
-  styleUrls: ['./detailed-info.component.scss']
+  styleUrls: ['./detailed-info.component.scss'],
 })
 export class DetailedInfoComponent implements OnDestroy {
   item: SearchResultItem | undefined;
@@ -17,17 +17,16 @@ export class DetailedInfoComponent implements OnDestroy {
   stripeClass = '';
   item$ = this.router.params.pipe(
     map((params) => params['id'] as string),
-    switchMap((id) => this.service.getById(id)),
+    switchMap((id) => this.service.getById(id))
   );
   subscription: Subscription;
   constructor(private router: ActivatedRoute, private service: YoutubeService) {
     this.subscription = this.item$.subscribe((item) => {
       this.item = item;
       this.stripeClass = getColorOfItem(this.item);
-    })
+    });
   }
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    this.subscription.unsubscribe();
   }
-
 }

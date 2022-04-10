@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { SearchVideoQuery, Sorting } from '../../../shared/models/search-query.model';
+import {
+  SearchVideoQuery,
+  Sorting,
+} from '../../../shared/models/search-query.model';
 import { YoutubeService } from '../../services/youtube.service';
 
 @Component({
@@ -12,23 +15,21 @@ export class HeaderComponent {
   searchQuery: SearchVideoQuery = {};
 
   // eslint-disable-next-line no-unused-vars
-  constructor(private youtubeService: YoutubeService) {
-  }
+  constructor(private youtubeService: YoutubeService) { }
 
   toggleFilters() {
     this.showFilters = !this.showFilters;
   }
 
   submit() {
-    this.youtubeService.submitQuery(this.searchQuery.searchText || '')
+    this.youtubeService.submitQuery(this.searchQuery.searchText || '');
   }
 
   sorting(event: Sorting) {
-    this.youtubeService.changeSorting(event)
+    this.youtubeService.changeSorting(event);
   }
 
   filtering(event: string | undefined) {
     this.youtubeService.changeFiltering(event || '');
   }
-
 }
