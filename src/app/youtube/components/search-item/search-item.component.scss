@@ -6,7 +6,8 @@
   background-color: #efefef;
   border-radius: 5px;
   width: 278px;
-  border-bottom: 5px solid;
+  border-bottom-width: 5px;
+  border-bottom-style: solid;
 }
 
 .video {
@@ -47,20 +48,4 @@
 
 img {
   padding: 0 5px;
-}
-
-.blue {
-  border-bottom-color: #2F80ED;
-}
-
-.green {
-  border-bottom-color: #27AE60;
-}
-
-.yellow {
-  border-bottom-color: #F2C94C;
-}
-
-.red {
-  border-bottom-color: #EB5757;
 }

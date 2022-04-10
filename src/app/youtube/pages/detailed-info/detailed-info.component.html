@@ -5,7 +5,7 @@
   <div class="flex">
     <img src={{item.snippet.thumbnails.maxres.url}} alt="video card">
   </div>
-  <div class="card-info p-8 relative">
+  <div [ngClass]="stripeClass" class="card-info p-8 relative">
     <div class="card-title-date flex justify-between">
       <div class="card-title">{{item.snippet.title}}</div>
       <div class="card-date">{{item.snippet.publishedAt | date:'fullDate'}}</div>

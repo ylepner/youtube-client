@@ -23,14 +23,11 @@ export class DetailedInfoComponent implements OnDestroy {
   constructor(private router: ActivatedRoute, private service: YoutubeService) {
     this.subscription = this.item$.subscribe((item) => {
       this.item = item;
+      this.stripeClass = getColorOfItem(this.item);
     })
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
-  }
-
-  setColorStrip() {
-    this.stripeClass = getColorOfItem(this.item);
   }
 
 }
