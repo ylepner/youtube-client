@@ -4,6 +4,7 @@ import {
   Sorting,
 } from '../../../shared/models/search-query.model';
 import { YoutubeService } from '../../services/youtube.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,9 @@ export class HeaderComponent {
   searchQuery: SearchVideoQuery = {};
 
   // eslint-disable-next-line no-unused-vars
-  constructor(private youtubeService: YoutubeService) { }
+  constructor(
+    private youtubeService: YoutubeService,
+    private authService: AuthService) { }
 
   toggleFilters() {
     this.showFilters = !this.showFilters;
@@ -32,4 +35,13 @@ export class HeaderComponent {
   filtering(event: string | undefined) {
     this.youtubeService.changeFiltering(event || '');
   }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+
+  getUserName() {
+    return this.authService.getUserName()
+  }
+
 }

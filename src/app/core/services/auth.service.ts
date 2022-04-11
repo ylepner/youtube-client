@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   login(userName: string, password: string) {
-    if (userName === 'admin' && password === '123') {
-      localStorage.setItem('currentUser', 'foo');
+    if (userName && password) {
+      localStorage.setItem('currentUser', userName);
       return Promise.resolve('token');
     }
     return Promise.resolve(null);
@@ -17,10 +16,14 @@ export class AuthService {
     localStorage.clear();
   }
 
-  isLogedIn() {
+  isLoggedIn() {
     if (localStorage.getItem('currentUser')) {
       return true;
     }
     return false;
+  }
+
+  getUserName() {
+    return localStorage.getItem('currentUser')
   }
 }
