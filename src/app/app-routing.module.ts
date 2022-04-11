@@ -14,10 +14,10 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: '404',
+    path: 'notfound',
     component: Page404Component,
   },
-  { path: '**', redirectTo: '404' },
+  { path: '**', redirectTo: 'notfound' },
 ];
 
 @NgModule({
