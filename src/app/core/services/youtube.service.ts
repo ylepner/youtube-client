@@ -77,33 +77,25 @@ function compareByDateDesc(a: SearchResultItem, b: SearchResultItem) {
 }
 
 function sortBy(items: SearchResultItem[], sorting: Sorting) {
-  items = [...items];
-  if (
-    sorting.field === SortingType.Date &&
-    sorting.sortOrder === SortOrder.Asc
-  ) {
-    items.sort(compareByDateAsc);
-  } else if (
-    sorting.field === SortingType.Date &&
-    sorting.sortOrder === SortOrder.Desc
-  ) {
-    items.sort(compareByDateDesc);
-  } else if (
-    sorting.field === SortingType.ViewsCount &&
-    sorting.sortOrder === SortOrder.Asc
-  ) {
-    items.sort(
+  const newItems = [...items];
+  const { field, sortOrder } = sorting;
+  if (field === SortingType.Date && sortOrder === SortOrder.Asc) {
+    return newItems.sort(compareByDateAsc);
+  }
+  if (field === SortingType.Date && sortOrder === SortOrder.Desc) {
+    return newItems.sort(compareByDateDesc);
+  }
+  if (field === SortingType.ViewsCount && sortOrder === SortOrder.Asc) {
+    return newItems.sort(
       (a, b) => Number(a.statistics.viewCount) - Number(b.statistics.viewCount)
     );
-  } else {
-    items.sort(
-      (a, b) => Number(b.statistics.viewCount) - Number(a.statistics.viewCount)
-    );
   }
-  return items;
+  return newItems.sort(
+    (a, b) => Number(b.statistics.viewCount) - Number(a.statistics.viewCount)
+  );
 }
 
-function filter(items: SearchResultItem[], filter: string) {
+function filter(items: SearchResultItem[], filter: string): SearchResultItem[] {
   if (!filter) {
     return items;
   }

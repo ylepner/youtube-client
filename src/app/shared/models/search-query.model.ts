@@ -1,4 +1,4 @@
-import { SortingType, SortOrder } from "./constants";
+import { SortingType, SortOrder } from './constants';
 
 export interface SearchVideoQuery {
   searchText?: string;
