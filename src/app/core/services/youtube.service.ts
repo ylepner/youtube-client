@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, Observable, Subject, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, debounceTime, filter, map, Observable, Subject, switchMap } from 'rxjs';
 import { SortingType, SortOrder } from 'src/app/shared/models/constants';
 import { VideoResultItem } from 'src/app/shared/models/search-item.model';
 import { Sorting } from 'src/app/shared/models/search-query.model';
 import { SearchResultList, VideoList } from 'src/app/shared/models/search-response.model';
 
-const URL_API_SEARCH = 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyD1W4LD0QUY3RY8D92OKqCL1iLU4wQcGyk&type=video&part=snippet&maxResults=50'
-const URL_API_VIDEO = 'https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1W4LD0QUY3RY8D92OKqCL1iLU4wQcGyk&part=snippet,statistics'
+const KEY = 'AIzaSyAov4nMNzRPLgTjxkmt65z-sqyjN99Ml7g'
+const URL_API_SEARCH = `https://www.googleapis.com/youtube/v3/search?key=${KEY}&type=video&part=snippet&maxResults=15`
+const URL_API_VIDEO = `https://www.googleapis.com/youtube/v3/videos?key=${KEY}&part=snippet,statistics`
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,8 @@ const URL_API_VIDEO = 'https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD1
 export class YoutubeService {
   private readonly searchText$ = new Subject<string>();
   private readonly items$ = this.searchText$.pipe(
+    filter((text) => text.length > 2),
+    debounceTime(1000),
     switchMap((text) =>
       this.httpClient.get<SearchResultList>(
         `${URL_API_SEARCH}&q=${text}`
@@ -41,7 +44,7 @@ export class YoutubeService {
       if (sorting) {
         items = sortBy(items, sorting);
       }
-      items = filter(items, filtering);
+      items = filterVideoResult(items, filtering);
       return items;
     })
   );
@@ -105,7 +108,7 @@ function sortBy(items: VideoResultItem[], sorting: Sorting) {
   );
 }
 
-function filter(items: VideoResultItem[], filter: string): VideoResultItem[] {
+function filterVideoResult(items: VideoResultItem[], filter: string): VideoResultItem[] {
   if (!filter) {
     return items;
   }

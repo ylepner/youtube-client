@@ -1,15 +1,15 @@
 <div class="flex header-container">
   <button><img src="assets/img/logo.jpg" alt="logo"></button>
-  <input [(ngModel)]="searchQuery.searchText" class="roboto" type="text" placeholder="What do you want to find out?">
-  <button class="search-btn roboto mr-3" (click)="submit()">search</button>
+  <input [(ngModel)]="searchQuery.searchText" (ngModelChange)="submit()" class="roboto" type="text"
+    placeholder="What do you want to find out?">
   <button class="settings-btn" (click)="toggleFilters()"><img class="w-7 h-7" src="assets/svg/search_settings.svg"
       alt=""></button>
   <div class="login-block absolute flex">
-    {{getUserName() || 'Your name'}}
-    <a *ngIf="!isLoggedIn()" routerLink="/auth/login">
+    {{(getUserName$ | async) || 'Your name'}}
+    <a *ngIf="(isLoggedIn$ | async) === false" routerLink="/auth/login">
       <img class="px-2 cursor-pointer" src="assets/svg/login.svg" alt="login">
     </a>
-    <a *ngIf="isLoggedIn()" routerLink="/auth/logout">
+    <a *ngIf="isLoggedIn$ | async" routerLink="/auth/logout">
       <img class="px-2 cursor-pointer w-11 h-8"
         src="assets/img/transparent-login-icon-logout-icon-5dcfef94516950.3632820915739083723335.png" alt="login">
     </a>

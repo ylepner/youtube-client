@@ -15,6 +15,9 @@ export class HeaderComponent {
   showFilters = false;
   searchQuery: SearchVideoQuery = {};
 
+  isLoggedIn$ = this.authService.isLoggedIn$;
+  getUserName$ = this.authService.getUserName$;
+
   // eslint-disable-next-line no-unused-vars
   constructor(
     private youtubeService: YoutubeService,
@@ -34,14 +37,6 @@ export class HeaderComponent {
 
   filtering(event: string | undefined) {
     this.youtubeService.changeFiltering(event || '');
-  }
-
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-
-  getUserName() {
-    return this.authService.getUserName()
   }
 
 }

@@ -28,9 +28,6 @@ export class LoginPageComponent {
     );
     if (result) {
       this.router.navigate(['home']);
-    } else {
-      // eslint-disable-next-line no-undef
-      alert('Wrong user name or password');
     }
   }
 }
