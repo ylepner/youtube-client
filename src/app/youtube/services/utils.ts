@@ -1,4 +1,4 @@
-import { SearchResultItem } from 'src/app/shared/models/search-item.model';
+import { VideoResultItem } from 'src/app/shared/models/search-item.model';
 
 /* eslint-disable no-unused-vars */
 export enum StripeColor {
@@ -8,7 +8,7 @@ export enum StripeColor {
   Red = 'red',
 }
 
-export function getColorOfItem(item: SearchResultItem | undefined) {
+export function getColorOfItem(item: VideoResultItem | undefined) {
   const days = getDaysOfPublished(item?.snippet.publishedAt);
   if (days) {
     if (days <= 7) {

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SearchResultItem } from '../../../shared/models/search-item.model';
+import { VideoResultItem } from '../../../shared/models/search-item.model';
 
 @Component({
   selector: 'app-search-results',
@@ -8,5 +8,5 @@ import { SearchResultItem } from '../../../shared/models/search-item.model';
 })
 export class SearchResultsComponent {
   @Input()
-  items?: SearchResultItem[] | null;
+  items?: VideoResultItem[] | null;
 }

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Component, Input } from '@angular/core';
-import { SearchResultItem } from '../../../shared/models/search-item.model';
+import { VideoResultItem } from '../../../shared/models/search-item.model';
 import { getDaysOfPublished, getColorOfItem } from '../../services/utils';
 
 @Component({
@@ -11,13 +11,13 @@ import { getDaysOfPublished, getColorOfItem } from '../../services/utils';
 export class SearchItemComponent {
   stripeClass: string = '';
 
-  private _item?: SearchResultItem;
+  private _item?: VideoResultItem;
   public get item() {
     return this._item;
   }
 
   @Input()
-  public set item(value: SearchResultItem | undefined) {
+  public set item(value: VideoResultItem | undefined) {
     this._item = value;
     console.log(this._item)
 

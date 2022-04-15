@@ -1,4 +1,11 @@
-import { SearchResultItem } from './search-item.model';
+import { SearchResultItem, VideoResultItem } from './search-item.model';
+
+export interface VideoList {
+  kind: string;
+  etag: string;
+  pageInfo: PageInfo;
+  items: VideoResultItem[];
+}
 
 export interface SearchResultList {
   kind: string;
