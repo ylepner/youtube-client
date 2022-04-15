@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, Subject, switchMap } from 'rxjs';
-import { SortingType, SortOrder } from 'src/app/shared/models/constants';
+import { BehaviorSubject, combineLatest, map, Subject, switchMap, tap } from 'rxjs';
+import { SortingType, SortOrder, URL } from 'src/app/shared/models/constants';
 import { SearchResultItem } from 'src/app/shared/models/search-item.model';
 import { Sorting } from 'src/app/shared/models/search-query.model';
 import { SearchResultList } from 'src/app/shared/models/search-response.model';
@@ -14,7 +14,7 @@ export class YoutubeService {
   private readonly items$ = this.searchText$.pipe(
     switchMap((text) =>
       this.httpClient.get<SearchResultList>(
-        `assets/data/data.json?query=${text}`
+        URL
       )
     ),
     map((result) => result.items)
@@ -55,13 +55,14 @@ export class YoutubeService {
 
   getAllItems() {
     return this.httpClient
-      .get<SearchResultList>(`assets/data/data.json`)
+      .get<SearchResultList>(URL)
       .pipe(map((result) => result.items));
   }
 
   getById(id: string) {
     return this.getAllItems().pipe(
-      map((items) => items.find((item) => item.id === id))
+      //tap((items) => console.log(items))
+      map((items) => items.find((item) => item.id.videoId === id))
     );
   }
 }
