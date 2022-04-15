@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, Subscription, switchMap } from 'rxjs';
 import { YoutubeService } from 'src/app/core/services/youtube.service';
 import { SearchResultItem } from 'src/app/shared/models/search-item.model';
@@ -20,9 +20,12 @@ export class DetailedInfoComponent implements OnDestroy {
     switchMap((id) => this.service.getById(id))
   );
   subscription: Subscription;
-  constructor(private router: ActivatedRoute, private service: YoutubeService) {
+  constructor(private router: ActivatedRoute, private service: YoutubeService, private routerCommon: Router) {
     this.subscription = this.item$.subscribe((item) => {
       this.item = item;
+      if (!this.item) {
+        this.routerCommon.navigate(['notfound']);
+      }
       this.stripeClass = getColorOfItem(this.item);
     });
   }
