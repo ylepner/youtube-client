@@ -1,9 +1,9 @@
-<div class="detailed-container flex px-12 py-10" *ngIf="item">
+<div class="detailed-container flex px-12 py-10 justify-center" *ngIf="item">
   <button [routerLink]="'/home'" class="flex">
     <img src="assets/img/back_button.jpg" alt="back">
   </button>
   <div class="flex">
-    <img src={{item.snippet.thumbnails.maxres.url}} alt="video card">
+    <img src={{item.snippet.thumbnails.high.url}} alt="video card">
   </div>
   <div [ngClass]="stripeClass" class="card-info p-8 relative">
     <div class="card-title-date flex justify-between">
@@ -15,7 +15,7 @@
       <p class="description-text">
         {{item.snippet.description}}</p>
     </div>
-    <div class="card-statistic flex absolute">
+    <!-- <div class="card-statistic flex absolute">
       <div class="view-info flex">
         <img src="assets/svg/viewed.svg" alt="view count">
         {{item?.statistics?.viewCount}}
@@ -32,6 +32,6 @@
         <img src="assets/svg/group9.svg" alt="comments">
         {{item?.statistics?.commentCount}}
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

@@ -19,6 +19,7 @@ export class SearchItemComponent {
   @Input()
   public set item(value: SearchResultItem | undefined) {
     this._item = value;
+    console.log(this._item)
 
     if (!value) {
       return;
