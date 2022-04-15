@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Page404Component } from './page404.component';
@@ -8,9 +9,8 @@ describe('Page404Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Page404Component ]
-    })
-    .compileComponents();
+      declarations: [Page404Component],
+    }).compileComponents();
   });
 
   beforeEach(() => {

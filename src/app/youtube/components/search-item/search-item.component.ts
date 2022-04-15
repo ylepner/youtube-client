@@ -19,8 +19,6 @@ export class SearchItemComponent {
   @Input()
   public set item(value: VideoResultItem | undefined) {
     this._item = value;
-    console.log(this._item)
-
     if (!value) {
       return;
     }

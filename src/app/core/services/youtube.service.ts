@@ -1,14 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, debounceTime, filter, map, Observable, Subject, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  debounceTime,
+  filter,
+  map,
+  Observable,
+  Subject,
+  switchMap,
+} from 'rxjs';
 import { SortingType, SortOrder } from 'src/app/shared/models/constants';
 import { VideoResultItem } from 'src/app/shared/models/search-item.model';
 import { Sorting } from 'src/app/shared/models/search-query.model';
-import { SearchResultList, VideoList } from 'src/app/shared/models/search-response.model';
+import {
+  SearchResultList,
+  VideoList,
+} from 'src/app/shared/models/search-response.model';
 
-const KEY = 'AIzaSyAov4nMNzRPLgTjxkmt65z-sqyjN99Ml7g'
-const URL_API_SEARCH = `https://www.googleapis.com/youtube/v3/search?key=${KEY}&type=video&part=snippet&maxResults=15`
-const URL_API_VIDEO = `https://www.googleapis.com/youtube/v3/videos?key=${KEY}&part=snippet,statistics`
+const API_KEY = 'AIzaSyAov4nMNzRPLgTjxkmt65z-sqyjN99Ml7g';
+const URL_API_SEARCH = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&type=video&part=snippet&maxResults=15`;
+const URL_API_VIDEO = `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet,statistics`;
 
 @Injectable({
   providedIn: 'root',
@@ -19,14 +31,14 @@ export class YoutubeService {
     filter((text) => text.length > 2),
     debounceTime(1000),
     switchMap((text) =>
-      this.httpClient.get<SearchResultList>(
-        `${URL_API_SEARCH}&q=${text}`
-      )
+      this.httpClient.get<SearchResultList>(`${URL_API_SEARCH}&q=${text}`)
     ),
     switchMap((searchResult) => {
       return this.httpClient.get<VideoList>(
-        `${URL_API_VIDEO}&id=${searchResult.items.map((item) => item.id.videoId).join(',')}`
-      )
+        `${URL_API_VIDEO}&id=${searchResult.items
+          .map((item) => item.id.videoId)
+          .join(',')}`
+      );
     }),
     map((result) => result.items)
   );
@@ -71,11 +83,9 @@ export class YoutubeService {
   }
 
   getById(id: string): Observable<VideoResultItem | undefined> {
-    return this.httpClient.get<VideoList>(
-      `${URL_API_VIDEO}&id=${id}`
-    ).pipe(
-      map((list) => list.items[0])
-    )
+    return this.httpClient
+      .get<VideoList>(`${URL_API_VIDEO}&id=${id}`)
+      .pipe(map((list) => list.items[0]));
   }
 }
 
@@ -108,7 +118,10 @@ function sortBy(items: VideoResultItem[], sorting: Sorting) {
   );
 }
 
-function filterVideoResult(items: VideoResultItem[], filter: string): VideoResultItem[] {
+function filterVideoResult(
+  items: VideoResultItem[],
+  filter: string
+): VideoResultItem[] {
   if (!filter) {
     return items;
   }

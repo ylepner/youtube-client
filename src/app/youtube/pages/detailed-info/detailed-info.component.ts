@@ -20,7 +20,11 @@ export class DetailedInfoComponent implements OnDestroy {
     switchMap((id) => this.service.getById(id))
   );
   subscription: Subscription;
-  constructor(private router: ActivatedRoute, private service: YoutubeService, private routerCommon: Router) {
+  constructor(
+    private router: ActivatedRoute,
+    private service: YoutubeService,
+    private routerCommon: Router
+  ) {
     this.subscription = this.item$.subscribe((item) => {
       this.item = item;
       if (!this.item) {
