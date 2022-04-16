@@ -19,8 +19,8 @@ import {
 } from 'src/app/shared/models/search-response.model';
 
 const API_KEY = 'AIzaSyAov4nMNzRPLgTjxkmt65z-sqyjN99Ml7g';
-const URL_API_SEARCH = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&type=video&part=snippet&maxResults=15`;
-const URL_API_VIDEO = `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=snippet,statistics`;
+const URL_API_SEARCH = `https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=15`;
+const URL_API_VIDEO = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics`;
 
 @Injectable({
   providedIn: 'root',

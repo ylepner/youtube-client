@@ -26,6 +26,7 @@ export class AuthService {
     this._user$.next({
       name: userName,
     });
+    localStorage.setItem('currentUser', userName);
     return Promise.resolve('token');
   }
 
