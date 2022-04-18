@@ -18,7 +18,8 @@
         "prettier/prettier": [
           "error",
           {
-            "endOfLine": "if"
+            "endOfLine": "lf",
+            "bracketSpacing": "true"
           }
         ],
         "@angular-eslint/directive-selector": [
