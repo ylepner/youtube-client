@@ -1,12 +1,27 @@
-<div class="login-container flex justify-center">
+<form class="login-container flex justify-center" [formGroup]="profileForm">
   <h1 class="login-text bold">Login</h1>
   <div class="login-field grid">
     <p class="title-info">login</p>
-    <input [(ngModel)]="userName" type="text" placeholder="enter your login">
+    <input type="email" placeholder="enter your login email" formControlName="nameForm">
   </div>
   <div class="password-field grid">
     <p class="title-info">password</p>
-    <input [(ngModel)]="password" type="password" placeholder="enter the password">
+    <input type="password" placeholder="enter the password" formControlName="passwordForm">
   </div>
-  <button (click)="login()" class="login-btn">Login</button>
+  <button type="submit" (click)="login()" class="login-btn">Login</button>
+</form>
+
+<div *ngIf="profileForm.get('nameForm')?.errors?.['required']">
+  Name is required
 </div>
+<div *ngIf="profileForm.get('passwordForm')?.errors?.['minlength']">
+  Password must be at least 8 characters long
+</div>
+<div *ngIf="profileForm.get('nameForm')?.errors?.['email']">
+  Enter a valid email address
+</div>
+<div *ngIf="profileForm.get('passwordForm')?.errors?.['capitalLetter']">
+  Password should contain capital letter
+</div>
+Password form errors {{profileForm.get('passwordForm')?.errors | json}}
+Name form errors {{profileForm.get('nameForm')?.errors | json}}
