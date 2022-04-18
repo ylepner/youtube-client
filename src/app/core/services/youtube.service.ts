@@ -4,6 +4,7 @@ import {
   BehaviorSubject,
   combineLatest,
   debounceTime,
+  distinctUntilChanged,
   filter,
   map,
   Observable,
@@ -22,6 +23,7 @@ const API_KEY = 'AIzaSyAov4nMNzRPLgTjxkmt65z-sqyjN99Ml7g';
 const URL_API_SEARCH = `https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=15`;
 const URL_API_VIDEO = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics`;
 
+const TIME = 1000;
 @Injectable({
   providedIn: 'root',
 })
@@ -29,7 +31,8 @@ export class YoutubeService {
   private readonly searchText$ = new Subject<string>();
   private readonly items$ = this.searchText$.pipe(
     filter((text) => text.length > 2),
-    debounceTime(1000),
+    debounceTime(TIME),
+    distinctUntilChanged(),
     switchMap((text) =>
       this.httpClient.get<SearchResultList>(`${URL_API_SEARCH}&q=${text}`)
     ),
