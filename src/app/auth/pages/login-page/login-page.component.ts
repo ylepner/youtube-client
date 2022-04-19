@@ -35,24 +35,25 @@ export class LoginPageComponent {
   }
 
   async login() {
-
-    alert(JSON.stringify(this.profileForm.value))
-    // const result = await this.service.login(
-    //   this.userName ?? '',
-    //   this.password ?? ''
-    // );
-    // if (result) {
-    //   this.router.navigate(['home']);
-    // }
+    // alert(JSON.stringify(this.profileForm.value))
+    const result = await this.service.login(
+      this.profileForm.value.nameForm ?? '',
+      this.profileForm.value.passwordForm ?? ''
+    );
+    if (result && this.profileForm.valid) {
+      this.router.navigate(['home']);
+    }
   }
 }
 
 const validator: ValidatorFn = (control: AbstractControl) => {
-  const strongRegex = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})")
+  const strongRegex = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])")
 
   const regexes: Array<[string, RegExp, string]> = [
     ['smallLetter', /[a-z]/, 'Password should contain small letter'],
     ['capitalLetter', /[A-Z]/, 'Password should contain capital letter'],
+    ['number', /[0-9]/, 'Password should contain number'],
+    ['symbol', /[!@#\$%\^&\*]/, 'Password should contain special symbol (!@#$%^&*)'],
   ]
   const regexTest = regexes.map((rule) => ({
     code: rule[0],
@@ -65,6 +66,5 @@ const validator: ValidatorFn = (control: AbstractControl) => {
   if (strongRegex.test(control.value)) {
     return null
   }
-  console.log(regexMessage)
   return regexMessage
 }
