@@ -11,17 +11,26 @@
   <button type="submit" (click)="login()" class="login-btn">Login</button>
 </form>
 
-<div *ngIf="profileForm.get('nameForm')?.errors?.['required']">
+<div class="form-comment" *ngIf="profileForm.get('nameForm')?.errors?.['required']">
   Name is required
 </div>
-<div *ngIf="profileForm.get('passwordForm')?.errors?.['minlength']">
+<div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['minlength']">
   Password must be at least 8 characters long
 </div>
-<div *ngIf="profileForm.get('nameForm')?.errors?.['email']">
+<div class="form-comment" *ngIf="profileForm.get('nameForm')?.errors?.['email']">
   Enter a valid email address
 </div>
-<div *ngIf="profileForm.get('passwordForm')?.errors?.['capitalLetter']">
+<div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['smallLetter']">
+  Password should contain small letter
+</div>
+<div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['capitalLetter']">
   Password should contain capital letter
 </div>
-Password form errors {{profileForm.get('passwordForm')?.errors | json}}
-Name form errors {{profileForm.get('nameForm')?.errors | json}}
+<div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['number']">
+  Password should contain number
+</div>
+<div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['symbol']">
+  Password should contain special symbol (!@#$%^&*)
+</div>
+<!-- Password form errors {{profileForm.get('passwordForm')?.errors | json}}
+Name form errors {{profileForm.get('nameForm')?.errors | json}} -->
