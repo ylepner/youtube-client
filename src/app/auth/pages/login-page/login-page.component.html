@@ -11,26 +11,31 @@
   <button type="submit" (click)="login()" class="login-btn">Login</button>
 </form>
 
-<div class="form-comment" *ngIf="profileForm.get('nameForm')?.errors?.['required']">
-  Name is required
+<div *ngIf="profileForm.get('nameForm')?.dirty">
+  <div class="form-comment" *ngIf="profileForm.get('nameForm')?.errors?.['required']">
+    Name is required
+  </div>
+  <div class="form-comment" *ngIf="profileForm.get('nameForm')?.errors?.['email']">
+    Enter a valid email address
+  </div>
 </div>
-<div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['minlength']">
-  Password must be at least 8 characters long
+<div *ngIf="profileForm.get('passwordForm')?.dirty">
+  <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['smallLetter']">
+    Password should contain small letter
+  </div>
+  <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['capitalLetter']">
+    Password should contain capital letter
+  </div>
+  <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['number']">
+    Password should contain number
+  </div>
+  <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['symbol']">
+    Password should contain special symbol (!@#$%^&*)
+  </div>
+  <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['minlength']">
+    Password must be at least 8 characters long
+  </div>
 </div>
-<div class="form-comment" *ngIf="profileForm.get('nameForm')?.errors?.['email']">
-  Enter a valid email address
-</div>
-<div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['smallLetter']">
-  Password should contain small letter
-</div>
-<div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['capitalLetter']">
-  Password should contain capital letter
-</div>
-<div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['number']">
-  Password should contain number
-</div>
-<div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['symbol']">
-  Password should contain special symbol (!@#$%^&*)
-</div>
+
 <!-- Password form errors {{profileForm.get('passwordForm')?.errors | json}}
 Name form errors {{profileForm.get('nameForm')?.errors | json}} -->
