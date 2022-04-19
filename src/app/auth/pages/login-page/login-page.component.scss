@@ -41,3 +41,11 @@ input {
   font-size: 0.7rem;
   color: red;
 }
+
+input[type="email"].ng-invalid.ng-dirty {
+  border: 2px solid red;
+}
+
+input[type="password"].ng-invalid.ng-dirty {
+  border: 2px solid red;
+}
