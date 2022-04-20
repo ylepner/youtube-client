@@ -5,19 +5,21 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { SearchItemComponent } from './components/search-item/search-item.component';
+import { AdminPageComponent } from '../core/components/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
     DetailedInfoComponent,
     SearchResultsComponent,
     SearchItemComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([
       { path: 'home', component: HomeComponent },
       { path: 'detailed/:id', component: DetailedInfoComponent },
+      { path: 'admin', component: AdminPageComponent }
     ]),
   ],
   exports: [RouterModule],

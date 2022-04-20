@@ -6,6 +6,7 @@ import {
 } from '../../../shared/models/search-query.model';
 import { YoutubeService } from '../../services/youtube.service';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,8 @@ export class HeaderComponent {
 
   constructor(
     private youtubeService: YoutubeService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   toggleFilters() {
@@ -38,5 +40,13 @@ export class HeaderComponent {
 
   filtering(event: string | undefined) {
     this.youtubeService.changeFiltering(event || '');
+  }
+
+  goToAdmin() {
+    this.router.navigate(['admin']);
+  }
+
+  goToHome() {
+    this.router.navigate(['home']);
   }
 }
