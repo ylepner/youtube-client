@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Component } from '@angular/core';
 import {
   SearchVideoQuery,
@@ -15,10 +16,13 @@ export class HeaderComponent {
   showFilters = false;
   searchQuery: SearchVideoQuery = {};
 
-  // eslint-disable-next-line no-unused-vars
+  isLoggedIn$ = this.authService.isLoggedIn$;
+  getUserName$ = this.authService.getUserName$;
+
   constructor(
     private youtubeService: YoutubeService,
-    private authService: AuthService) { }
+    private authService: AuthService
+  ) { }
 
   toggleFilters() {
     this.showFilters = !this.showFilters;
@@ -35,13 +39,4 @@ export class HeaderComponent {
   filtering(event: string | undefined) {
     this.youtubeService.changeFiltering(event || '');
   }
-
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-
-  getUserName() {
-    return this.authService.getUserName()
-  }
-
 }

@@ -1,9 +1,21 @@
-export interface SearchResultItem {
+export interface VideoResultItem {
   kind: string;
   etag: string;
   id: string;
   snippet: Snippet;
   statistics: Statistics;
+}
+
+export interface SearchResultItem {
+  kind: string;
+  etag: string;
+  id: SearchItemId;
+  snippet: Snippet;
+}
+
+export interface SearchItemId {
+  kind: string;
+  videoId: string;
 }
 
 export interface Snippet {

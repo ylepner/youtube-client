@@ -1,22 +1,47 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, map, Subject, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  Observable,
+  Subject,
+  switchMap,
+} from 'rxjs';
 import { SortingType, SortOrder } from 'src/app/shared/models/constants';
-import { SearchResultItem } from 'src/app/shared/models/search-item.model';
+import { VideoResultItem } from 'src/app/shared/models/search-item.model';
 import { Sorting } from 'src/app/shared/models/search-query.model';
-import { SearchResultList } from 'src/app/shared/models/search-response.model';
+import {
+  SearchResultList,
+  VideoList,
+} from 'src/app/shared/models/search-response.model';
 
+const URL_API_SEARCH = `https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=15`;
+const URL_API_VIDEO = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics`;
+
+const TIME = 1000;
 @Injectable({
   providedIn: 'root',
 })
 export class YoutubeService {
   private readonly searchText$ = new Subject<string>();
   private readonly items$ = this.searchText$.pipe(
+    filter((text) => text.length > 2),
+    debounceTime(TIME),
+    distinctUntilChanged(),
     switchMap((text) =>
-      this.httpClient.get<SearchResultList>(
-        `assets/data/data.json?query=${text}`
-      )
+      this.httpClient.get<SearchResultList>(`${URL_API_SEARCH}&q=${text}`)
     ),
+    switchMap((searchResult) => {
+      return this.httpClient.get<VideoList>(
+        `${URL_API_VIDEO}&id=${searchResult.items
+          .map((item) => item.id.videoId)
+          .join(',')}`
+      );
+    }),
     map((result) => result.items)
   );
   private readonly sorting$ = new BehaviorSubject<Sorting | undefined>(
@@ -33,7 +58,7 @@ export class YoutubeService {
       if (sorting) {
         items = sortBy(items, sorting);
       }
-      items = filter(items, filtering);
+      items = filterVideoResult(items, filtering);
       return items;
     })
   );
@@ -55,28 +80,28 @@ export class YoutubeService {
 
   getAllItems() {
     return this.httpClient
-      .get<SearchResultList>(`assets/data/data.json`)
+      .get<VideoList>(URL_API_SEARCH)
       .pipe(map((result) => result.items));
   }
 
-  getById(id: string) {
-    return this.getAllItems().pipe(
-      map((items) => items.find((item) => item.id === id))
-    );
+  getById(id: string): Observable<VideoResultItem | undefined> {
+    return this.httpClient
+      .get<VideoList>(`${URL_API_VIDEO}&id=${id}`)
+      .pipe(map((list) => list.items[0]));
   }
 }
 
-function compareByDateAsc(a: SearchResultItem, b: SearchResultItem) {
+function compareByDateAsc(a: VideoResultItem, b: VideoResultItem) {
   const dateA = new Date(a.snippet.publishedAt);
   const dateB = new Date(b.snippet.publishedAt);
   return dateA.getTime() - dateB.getTime();
 }
 
-function compareByDateDesc(a: SearchResultItem, b: SearchResultItem) {
+function compareByDateDesc(a: VideoResultItem, b: VideoResultItem) {
   return compareByDateAsc(b, a);
 }
 
-function sortBy(items: SearchResultItem[], sorting: Sorting) {
+function sortBy(items: VideoResultItem[], sorting: Sorting) {
   const newItems = [...items];
   const { field, sortOrder } = sorting;
   if (field === SortingType.Date && sortOrder === SortOrder.Asc) {
@@ -95,7 +120,10 @@ function sortBy(items: SearchResultItem[], sorting: Sorting) {
   );
 }
 
-function filter(items: SearchResultItem[], filter: string): SearchResultItem[] {
+function filterVideoResult(
+  items: VideoResultItem[],
+  filter: string
+): VideoResultItem[] {
   if (!filter) {
     return items;
   }
