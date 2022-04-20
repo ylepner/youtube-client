@@ -1,0 +1,12 @@
+<div class="login-container flex justify-center">
+  <h1 class="login-text bold">Login</h1>
+  <div class="login-field grid">
+    <p class="title-info">login</p>
+    <input [(ngModel)]="userName" type="text" placeholder="enter your login">
+  </div>
+  <div class="password-field grid">
+    <p class="title-info">password</p>
+    <input [(ngModel)]="password" type="password" placeholder="enter the password">
+  </div>
+  <button (click)="login()" class="login-btn">Login</button>
+</div>
