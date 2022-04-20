@@ -1,20 +1,54 @@
 <div class="card-container relative">
-  <h1 class="card-title">Create new card</h1>
-  <div class="input-title grid">
-    <label for="title">Title</label>
-    <input id="title" type="text">
-  </div>
-  <div class="input-description grid">
-    <label for="description">Description</label>
-    <input id="description" type="text">
-  </div>
-  <div class="input-img grid">
-    <label for="input-img">Img</label>
-    <input id="input-img" type="text">
-  </div>
-  <div class="link-video grid">
-    <label for="link-video">Link-video</label>
-    <input id="link-video" type="url">
-  </div>
-  <button class="create-btn absolute">Create card</button>
+  <form [formGroup]="cardForm">
+    <h1 class="card-title">Create new card</h1>
+    <div class="input-title grid">
+      <label for="title">Title</label>
+      <input id="title" type="text" formControlName="title">
+      <div *ngIf="form['title'].dirty">
+        <div class="form-comment" *ngIf="form['title'].errors?.['required']">
+          Please enter a title
+        </div>
+        <div class="form-comment" *ngIf="form['title'].errors?.['minlength']">
+          The title is too short
+        </div>
+        <div class="form-comment" *ngIf="form['title'].errors?.['maxlength']">
+          The title is too long
+        </div>
+      </div>
+    </div>
+    <div class="input-description grid">
+      <label for="description">Description</label>
+      <input id="description" type="text" formControlName="description">
+      <div *ngIf="form['description'].dirty">
+        <div class="form-comment" *ngIf="form['description'].errors?.['maxlength']">
+          The description is too long
+        </div>
+      </div>
+    </div>
+    <div class="input-img grid">
+      <label for="input-img">Img</label>
+      <input id="input-img" type="url" formControlName="img">
+      <div *ngIf="form['img'].dirty">
+        <div class="form-comment" *ngIf="form['img'].errors?.['required']">
+          Please enter a link to the image
+        </div>
+        <div class="form-comment" *ngIf="form['img'].errors?.['pattern']">
+          The image link is invalid
+        </div>
+      </div>
+    </div>
+    <div class="link-video grid">
+      <label for="link-video">Link video</label>
+      <input id="link-video" type="url" formControlName="linkVideo">
+      <div *ngIf="form['linkVideo'].dirty">
+        <div class="form-comment" *ngIf="form['linkVideo'].errors?.['required']">
+          Please enter a link to the video
+        </div>
+        <div class="form-comment" *ngIf="form['linkVideo'].errors?.['pattern']">
+          The video link is invalid
+        </div>
+      </div>
+    </div>
+    <button class="create-btn absolute" (click)="onSubmit()">Create card</button>
+  </form>
 </div>
