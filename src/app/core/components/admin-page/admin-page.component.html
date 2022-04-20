@@ -1,4 +1,4 @@
-<div class="card-container relative">
+<div class="card-container">
   <form [formGroup]="cardForm">
     <h1 class="card-title">Create new card</h1>
     <div class="input-title grid">
@@ -49,6 +49,19 @@
         </div>
       </div>
     </div>
-    <button class="create-btn absolute" (click)="onSubmit()">Create card</button>
+    <div class="date grid">
+      <label for="date">Creation date</label>
+      <input id="date" type="date" formControlName="date">
+      <div *ngIf="form['date'].dirty">
+        <div class="form-comment" *ngIf="form['date'].errors?.['dateError']">
+          The date is invalid
+        </div>
+      </div>
+    </div>
+    <div class="button flex justify-end pt-5">
+      <button type="submit" class="create-btn" [disabled]="!cardForm.valid" (click)="onSubmit()">
+        Create card
+      </button>
+    </div>
   </form>
 </div>
