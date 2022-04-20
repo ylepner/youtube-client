@@ -6,13 +6,15 @@ import { HomeComponent } from './pages/home/home.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { SearchItemComponent } from './components/search-item/search-item.component';
 import { AdminPageComponent } from '../core/components/admin-page/admin-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     DetailedInfoComponent,
     SearchResultsComponent,
     SearchItemComponent,
-    HomeComponent
+    HomeComponent,
+    AdminPageComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,8 @@ import { AdminPageComponent } from '../core/components/admin-page/admin-page.com
       { path: 'detailed/:id', component: DetailedInfoComponent },
       { path: 'admin', component: AdminPageComponent }
     ]),
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [RouterModule],
 })
