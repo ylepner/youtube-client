@@ -1,6 +1,13 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable no-unused-vars */
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -15,16 +22,13 @@ export class LoginPageComponent {
   password: string | undefined;
 
   profileForm = new FormGroup({
-    nameForm: new FormControl('', [
-      Validators.required,
-      Validators.email,
-    ]),
+    nameForm: new FormControl('', [Validators.required, Validators.email]),
     passwordForm: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
-      validator
-    ])
-  })
+      validator,
+    ]),
+  });
 
   constructor(
     private route: ActivatedRoute,
@@ -47,24 +51,32 @@ export class LoginPageComponent {
 }
 
 const validator: ValidatorFn = (control: AbstractControl) => {
-  const strongRegex = new RegExp("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])")
+  const strongRegex = new RegExp(
+    '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])'
+  );
 
   const regexes: Array<[string, RegExp, string]> = [
     ['smallLetter', /[a-z]/, 'Password should contain small letter'],
     ['capitalLetter', /[A-Z]/, 'Password should contain capital letter'],
     ['number', /[0-9]/, 'Password should contain number'],
-    ['symbol', /[!@#\$%\^&\*]/, 'Password should contain special symbol (!@#$%^&*)'],
-  ]
+    [
+      'symbol',
+      /[!@#\$%\^&\*]/,
+      'Password should contain special symbol (!@#$%^&*)',
+    ],
+  ];
   const regexTest = regexes.map((rule) => ({
     code: rule[0],
     result: rule[1].test(control.value),
-    message: rule[2]
+    message: rule[2],
   }));
-  const regexFilter = regexTest.filter((el) => el.result === false)
-  const regexMessage = Object.fromEntries(regexFilter.map((el) => [el.code, el.message]))
+  const regexFilter = regexTest.filter((el) => el.result === false);
+  const regexMessage = Object.fromEntries(
+    regexFilter.map((el) => [el.code, el.message])
+  );
 
   if (strongRegex.test(control.value)) {
-    return null
+    return null;
   }
-  return regexMessage
-}
+  return regexMessage;
+};

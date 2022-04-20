@@ -36,11 +36,5 @@
       </div>
     </div>
   </div>
-  <button type="submit" (click)="login()" class="login-btn">Login</button>
+  <button type="submit" (click)="login()" class="login-btn" [disabled]="!profileForm.valid">Login</button>
 </form>
-
-
-
-
-<!-- Password form errors {{profileForm.get('passwordForm')?.errors | json}}
-Name form errors {{profileForm.get('nameForm')?.errors | json}} -->
