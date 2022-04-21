@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 const REGEXP_URL = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -29,14 +29,7 @@ export class AdminPageComponent {
     ]),
     date: new FormControl('', [
       Validators.required,
-      (control) => {
-        const dateForm = new Date(control.value);
-        const today = new Date();
-        if (today.getTime() - dateForm.getTime() >= 0) {
-          return null;
-        }
-        return { dateError: 'The date is invalid' };
-      },
+      dateValidator,
     ]),
   });
 
@@ -45,4 +38,12 @@ export class AdminPageComponent {
       this.router.navigate(['home']);
     }
   }
+}
+const dateValidator: ValidatorFn = (control: AbstractControl) => {
+  const dateForm = new Date(control.value);
+  const today = new Date();
+  if (today.getTime() - dateForm.getTime() < 0) {
+    return null;
+  }
+  return { dateError: 'The date is invalid' };
 }
