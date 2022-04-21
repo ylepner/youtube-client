@@ -26,7 +26,7 @@ export class LoginPageComponent {
     passwordForm: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
-      validator,
+      passwordDifficulty,
     ]),
   });
 
@@ -50,7 +50,7 @@ export class LoginPageComponent {
   }
 }
 
-const validator: ValidatorFn = (control: AbstractControl) => {
+const passwordDifficulty: ValidatorFn = (control: AbstractControl) => {
   const strongRegex = new RegExp(
     '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])'
   );

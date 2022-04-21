@@ -4,10 +4,10 @@
     <p class="title-info">login</p>
     <input type="email" placeholder="enter your login email" formControlName="nameForm">
     <div *ngIf="profileForm.get('nameForm')?.dirty">
-      <div class="form-comment" *ngIf="profileForm.get('nameForm')?.errors?.['required']">
+      <div class="form-comment" *ngIf="profileForm.get('nameForm')?.hasError('required')">
         Name is required
       </div>
-      <div class="form-comment" *ngIf="profileForm.get('nameForm')?.errors?.['email']">
+      <div class="form-comment" *ngIf="profileForm.get('nameForm')?.hasError('email')">
         Enter a valid email address
       </div>
     </div>
@@ -19,19 +19,19 @@
       <div class="form-comment" *ngIf="!profileForm.get('passwordForm')?.valid">
         Password should contain:
       </div>
-      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['smallLetter']">
+      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.hasError('smallLetter')">
         small letter
       </div>
-      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['capitalLetter']">
+      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.hasError('capitalLetter')">
         capital letter
       </div>
-      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['number']">
+      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.hasError('number')">
         number
       </div>
-      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['symbol']">
+      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.hasError('symbol')">
         special symbol (!@#$%^&*)
       </div>
-      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.errors?.['minlength']">
+      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.hasError('minlength')">
         Password must be at least 8 characters long
       </div>
     </div>
