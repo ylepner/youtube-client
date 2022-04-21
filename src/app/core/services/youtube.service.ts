@@ -89,6 +89,19 @@ export class YoutubeService {
       .get<VideoList>(`${URL_API_VIDEO}&id=${id}`)
       .pipe(map((list) => list.items[0]));
   }
+
+  loadVideos(text: string): Observable<VideoResultItem[]> {
+    return this.httpClient.get<SearchResultList>(`${URL_API_SEARCH}&q=${text}`).pipe(
+      switchMap((videoResult) => {
+        return this.httpClient.get<VideoList>(
+          `${URL_API_VIDEO}&id=${videoResult.items
+            .map((item) => item.id.videoId)
+            .join(',')}`
+        );
+      }),
+      map((videoList) => videoList.items)
+    )
+  }
 }
 
 function compareByDateAsc(a: VideoResultItem, b: VideoResultItem) {

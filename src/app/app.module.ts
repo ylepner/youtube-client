@@ -9,6 +9,8 @@ import { CoreModule } from './core/core.module';
 import { YoutubeApiInterceptor } from './core/services/youtube-api.interceptor';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, reducers } from './redux/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { YoutubeApiEffects } from './redux/effects/youtube-api.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +32,7 @@ import { metaReducers, reducers } from './redux/reducers';
         strictActionTypeUniqueness: true
       },
     }),
+    EffectsModule.forRoot([YoutubeApiEffects])
   ],
   providers: [
     {
