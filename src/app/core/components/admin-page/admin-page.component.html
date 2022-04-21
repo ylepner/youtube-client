@@ -4,14 +4,14 @@
     <div class="input-title grid">
       <label for="title">Title</label>
       <input id="title" type="text" formControlName="title">
-      <div *ngIf="form['title'].dirty">
-        <div class="form-comment" *ngIf="form['title'].errors?.['required']">
+      <div *ngIf="cardForm.get('title')?.dirty">
+        <div class="form-comment" *ngIf="cardForm.get('title')?.hasError('required')">
           Please enter a title
         </div>
-        <div class="form-comment" *ngIf="form['title'].errors?.['minlength']">
+        <div class="form-comment" *ngIf="cardForm.get('title')?.hasError('minlength')">
           The title is too short
         </div>
-        <div class="form-comment" *ngIf="form['title'].errors?.['maxlength']">
+        <div class="form-comment" *ngIf="cardForm.get('title')?.hasError('maxlength')">
           The title is too long
         </div>
       </div>
@@ -19,8 +19,8 @@
     <div class="input-description grid">
       <label for="description">Description</label>
       <input id="description" type="text" formControlName="description">
-      <div *ngIf="form['description'].dirty">
-        <div class="form-comment" *ngIf="form['description'].errors?.['maxlength']">
+      <div *ngIf="cardForm.get('description')?.dirty">
+        <div class="form-comment" *ngIf="cardForm.get('description')?.hasError('maxlength')">
           The description is too long
         </div>
       </div>
@@ -28,11 +28,11 @@
     <div class="input-img grid">
       <label for="input-img">Img</label>
       <input id="input-img" type="url" formControlName="img">
-      <div *ngIf="form['img'].dirty">
-        <div class="form-comment" *ngIf="form['img'].errors?.['required']">
+      <div *ngIf="cardForm.get('img')?.dirty">
+        <div class="form-comment" *ngIf="cardForm.get('img')?.hasError('required')">
           Please enter a link to the image
         </div>
-        <div class="form-comment" *ngIf="form['img'].errors?.['pattern']">
+        <div class="form-comment" *ngIf="cardForm.get('img')?.hasError('pattern')">
           The image link is invalid
         </div>
       </div>
@@ -40,11 +40,11 @@
     <div class="link-video grid">
       <label for="link-video">Link video</label>
       <input id="link-video" type="url" formControlName="linkVideo">
-      <div *ngIf="form['linkVideo'].dirty">
-        <div class="form-comment" *ngIf="form['linkVideo'].errors?.['required']">
+      <div *ngIf="cardForm.get('linkVideo')?.dirty">
+        <div class="form-comment" *ngIf="cardForm.get('linkVideo')?.hasError('required')">
           Please enter a link to the video
         </div>
-        <div class="form-comment" *ngIf="form['linkVideo'].errors?.['pattern']">
+        <div class="form-comment" *ngIf="cardForm.get('linkVideo')?.hasError('pattern')">
           The video link is invalid
         </div>
       </div>
@@ -52,8 +52,8 @@
     <div class="date grid">
       <label for="date">Creation date</label>
       <input id="date" type="date" formControlName="date">
-      <div *ngIf="form['date'].dirty">
-        <div class="form-comment" *ngIf="form['date'].errors?.['dateError']">
+      <div *ngIf="cardForm.get('date')?.dirty">
+        <div class="form-comment" *ngIf="cardForm.get('date')?.hasError('dateError')">
           The date is invalid
         </div>
       </div>

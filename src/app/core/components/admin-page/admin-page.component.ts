@@ -40,10 +40,6 @@ export class AdminPageComponent {
     ]),
   });
 
-  get form() {
-    return this.cardForm.controls;
-  }
-
   onSubmit() {
     if (this.cardForm.valid) {
       this.router.navigate(['home']);
