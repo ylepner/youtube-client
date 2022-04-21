@@ -10,6 +10,9 @@ import {
 import { Router } from '@angular/router';
 
 const REGEXP_URL = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+const TITLE_MIN_LENGTH = 3;
+const TITLE_MAX_LENGTH = 20;
+const DESCRIPTION_MAX_LENGTH = 20;
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
@@ -21,10 +24,10 @@ export class AdminPageComponent {
   cardForm = new FormGroup({
     title: new FormControl('', [
       Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20),
+      Validators.minLength(TITLE_MIN_LENGTH),
+      Validators.maxLength(TITLE_MAX_LENGTH),
     ]),
-    description: new FormControl('', [Validators.maxLength(255)]),
+    description: new FormControl('', [Validators.maxLength(DESCRIPTION_MAX_LENGTH)]),
     img: new FormControl('', [
       Validators.required,
       Validators.pattern(REGEXP_URL),

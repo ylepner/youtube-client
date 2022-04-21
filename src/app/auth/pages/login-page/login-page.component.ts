@@ -11,6 +11,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 
+const PASSWORD_MIN_LENGTH = 8;
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -25,7 +26,7 @@ export class LoginPageComponent {
     nameForm: new FormControl('', [Validators.required, Validators.email]),
     passwordForm: new FormControl('', [
       Validators.required,
-      Validators.minLength(8),
+      Validators.minLength(PASSWORD_MIN_LENGTH),
       passwordDifficulty,
     ]),
   });
