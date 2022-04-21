@@ -1,6 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 const REGEXP_URL = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -27,10 +33,7 @@ export class AdminPageComponent {
       Validators.required,
       Validators.pattern(REGEXP_URL),
     ]),
-    date: new FormControl('', [
-      Validators.required,
-      dateValidator,
-    ]),
+    date: new FormControl('', [Validators.required, dateValidator]),
   });
 
   onSubmit() {
@@ -46,4 +49,4 @@ const dateValidator: ValidatorFn = (control: AbstractControl) => {
     return null;
   }
   return { dateError: 'The date is invalid' };
-}
+};

@@ -39,7 +39,6 @@ export class LoginPageComponent {
   }
 
   async login() {
-    // alert(JSON.stringify(this.profileForm.value))
     const result = await this.service.login(
       this.profileForm.value.nameForm ?? '',
       this.profileForm.value.passwordForm ?? ''
