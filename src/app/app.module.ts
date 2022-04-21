@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
 import { YoutubeApiInterceptor } from './core/services/youtube-api.interceptor';
 import { StoreModule } from '@ngrx/store';
+import { metaReducers, reducers } from './redux/reducers';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,8 @@ import { StoreModule } from '@ngrx/store';
     FormsModule,
     CoreModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}, {
+    StoreModule.forRoot(reducers, {
+      metaReducers: metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
