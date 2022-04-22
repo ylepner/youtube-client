@@ -5,7 +5,7 @@ import { VideoResultItem } from 'src/app/shared/models/search-item.model';
 import { Sorting } from 'src/app/shared/models/search-query.model';
 import { filterVideos } from '../actions/filtering.actions';
 import { sortVideos } from '../actions/sorting.actions';
-import { loadVideosSuccess } from '../actions/youtube.actions';
+import { addCustomCard, loadVideosSuccess } from '../actions/youtube.actions';
 
 export interface State {
   apiVideos: VideoResultItem[];
@@ -39,6 +39,8 @@ export const reducer = createReducer(defaultState, on(loadVideosSuccess, (state,
     }
   }
   return { ...state, sorting: newSorting }
+}), on(addCustomCard, (state, action) => {
+  return { ...state, customCards: [...state.customCards, action.card] }
 }))
 
 function toggleSort(order: SortOrder) {
