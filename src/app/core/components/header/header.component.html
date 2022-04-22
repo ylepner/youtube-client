@@ -15,6 +15,7 @@
         src="assets/img/transparent-login-icon-logout-icon-5dcfef94516950.3632820915739083723335.png" alt="login">
     </a>
   </div>
-  <app-filtering-block *ngIf="showFilters" (sortingChange)="sorting($event)" (filteringChange)="filtering($event)">
+  <app-filtering-block *ngIf="showFilters" (filteringChange)="filtering($event)"
+    (sortingChange)="sorting($event.field)">
   </app-filtering-block>
 </div>
