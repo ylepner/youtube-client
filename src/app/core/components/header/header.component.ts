@@ -7,6 +7,9 @@ import {
 import { YoutubeService } from '../../services/youtube.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { selectFilter, selectFilteredVideos } from 'src/app/redux/selectors/youtube.selectors';
+import { filterVideos } from 'src/app/redux/actions/filtering.actions';
 
 @Component({
   selector: 'app-header',
@@ -20,10 +23,14 @@ export class HeaderComponent {
   isLoggedIn$ = this.authService.isLoggedIn$;
   getUserName$ = this.authService.getUserName$;
 
+
+  filter$ = this.store.select(selectFilter);
+
   constructor(
     private youtubeService: YoutubeService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) { }
 
   toggleFilters() {
@@ -39,7 +46,7 @@ export class HeaderComponent {
   }
 
   filtering(event: string | undefined) {
-    this.youtubeService.changeFiltering(event || '');
+    this.store.dispatch(filterVideos({ filter: event?.toLocaleLowerCase() || '' }))
   }
 
   goToAdmin() {
