@@ -91,16 +91,18 @@ export class YoutubeService {
   }
 
   loadVideos(text: string): Observable<VideoResultItem[]> {
-    return this.httpClient.get<SearchResultList>(`${URL_API_SEARCH}&q=${text}`).pipe(
-      switchMap((videoResult) => {
-        return this.httpClient.get<VideoList>(
-          `${URL_API_VIDEO}&id=${videoResult.items
-            .map((item) => item.id.videoId)
-            .join(',')}`
-        );
-      }),
-      map((videoList) => videoList.items)
-    )
+    return this.httpClient
+      .get<SearchResultList>(`${URL_API_SEARCH}&q=${text}`)
+      .pipe(
+        switchMap((videoResult) => {
+          return this.httpClient.get<VideoList>(
+            `${URL_API_VIDEO}&id=${videoResult.items
+              .map((item) => item.id.videoId)
+              .join(',')}`
+          );
+        }),
+        map((videoList) => videoList.items)
+      );
   }
 }
 

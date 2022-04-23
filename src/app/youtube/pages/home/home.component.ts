@@ -1,9 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { YoutubeService } from 'src/app/core/services/youtube.service';
-import { loadVideos } from 'src/app/redux/actions/youtube.actions';
-import { selectApiVideos, selectFilteredVideos } from 'src/app/redux/selectors/youtube.selectors';
+import { selectFilteredVideos } from 'src/app/redux/selectors/youtube.selectors';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +9,5 @@ import { selectApiVideos, selectFilteredVideos } from 'src/app/redux/selectors/y
 })
 export class HomeComponent {
   items$ = this.store.select(selectFilteredVideos);
-  constructor(private store: Store) {
-  }
+  constructor(private store: Store) { }
 }

@@ -1,6 +1,6 @@
-import { createAction, props } from "@ngrx/store";
-import { CustomCard } from "src/app/shared/models/custom-card.model";
-import { VideoResultItem } from "src/app/shared/models/search-item.model";
+import { createAction, props } from '@ngrx/store';
+import { CustomCard } from 'src/app/shared/models/custom-card.model';
+import { VideoResultItem } from 'src/app/shared/models/search-item.model';
 
 export const loadVideos = createAction(
   '[Youtube] Load Videos',
@@ -15,6 +15,6 @@ export const loadVideosSuccess = createAction(
 export const addCustomCard = createAction(
   '[CustomCard] Add Card',
   props<{
-    card: CustomCard
+    card: CustomCard;
   }>()
-)
+);

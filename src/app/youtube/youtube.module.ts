@@ -14,17 +14,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SearchResultsComponent,
     SearchItemComponent,
     HomeComponent,
-    AdminPageComponent
+    AdminPageComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([
       { path: 'home', component: HomeComponent },
       { path: 'detailed/:id', component: DetailedInfoComponent },
-      { path: 'admin', component: AdminPageComponent }
+      { path: 'admin', component: AdminPageComponent },
     ]),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [RouterModule],
 })

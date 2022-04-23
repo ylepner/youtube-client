@@ -8,7 +8,12 @@ import { YoutubeService } from '../../services/youtube.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { selectFilter, selectFilteredVideos, selectSortedVideos, selectSorting } from 'src/app/redux/selectors/youtube.selectors';
+import {
+  selectFilter,
+  selectFilteredVideos,
+  selectSortedVideos,
+  selectSorting,
+} from 'src/app/redux/selectors/youtube.selectors';
 import { filterVideos } from 'src/app/redux/actions/filtering.actions';
 import { sortVideos } from 'src/app/redux/actions/sorting.actions';
 import { SortingType } from 'src/app/shared/models/constants';
@@ -37,13 +42,15 @@ export class HeaderComponent {
     private router: Router,
     private store: Store
   ) {
-    this.queryText$.pipe(
-      filter((text) => text.length > 2),
-      debounceTime(1000),
-      distinctUntilChanged(),
-    ).subscribe(text => {
-      this.store.dispatch(loadVideos({ query: text }));
-    })
+    this.queryText$
+      .pipe(
+        filter((text) => text.length > 2),
+        debounceTime(1000),
+        distinctUntilChanged()
+      )
+      .subscribe((text) => {
+        this.store.dispatch(loadVideos({ query: text }));
+      });
   }
 
   toggleFilters() {
@@ -59,7 +66,7 @@ export class HeaderComponent {
   }
 
   filtering(event: string | undefined) {
-    this.store.dispatch(filterVideos({ filter: event || '' }))
+    this.store.dispatch(filterVideos({ filter: event || '' }));
   }
 
   goToAdmin() {
