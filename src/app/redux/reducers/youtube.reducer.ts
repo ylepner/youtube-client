@@ -1,24 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 import { SortOrder } from 'src/app/shared/models/constants';
-import { CustomCard } from 'src/app/shared/models/custom-card.model';
-import { VideoResultItem } from 'src/app/shared/models/search-item.model';
 import { Sorting } from 'src/app/shared/models/search-query.model';
 import { filterVideos } from '../actions/filtering.actions';
 import { sortVideos } from '../actions/sorting.actions';
 import { addCustomCard, loadVideosSuccess } from '../actions/youtube.actions';
-
-export interface State {
-  apiVideos: VideoResultItem[];
-  customCards: CustomCard[];
-  filter: string;
-  sorting?: Sorting;
-}
-
-const defaultState: State = {
-  apiVideos: [],
-  customCards: [],
-  filter: '',
-};
+import { defaultState, State } from '../state.models';
 
 export const reducer = createReducer(
   defaultState,

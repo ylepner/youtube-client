@@ -1,28 +1,44 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { SortingType, SortOrder } from "src/app/shared/models/constants";
-import { VideoResultItem } from "src/app/shared/models/search-item.model";
-import { Sorting } from "src/app/shared/models/search-query.model";
-import { State } from "../reducers/youtube.reducer";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { SortingType, SortOrder } from 'src/app/shared/models/constants';
+import { VideoResultItem } from 'src/app/shared/models/search-item.model';
+import { Sorting } from 'src/app/shared/models/search-query.model';
+import { State } from '../state.models';
 
 const selectState = createFeatureSelector<State>('youtube');
-export const selectFilter = createSelector(selectState, state => state.filter);
-export const selectSorting = createSelector(selectState, state => state.sorting);
-export const selectApiVideos = createSelector(selectState, state => state.apiVideos);
-export const selectSortedVideos = createSelector(selectApiVideos, selectSorting, (videos, sorting) => {
-  if (!sorting) {
-    return videos
+export const selectFilter = createSelector(
+  selectState,
+  (state) => state.filter
+);
+export const selectSorting = createSelector(
+  selectState,
+  (state) => state.sorting
+);
+export const selectApiVideos = createSelector(
+  selectState,
+  (state) => state.apiVideos
+);
+export const selectSortedVideos = createSelector(
+  selectApiVideos,
+  selectSorting,
+  (videos, sorting) => {
+    if (!sorting) {
+      return videos;
+    }
+    videos = [...videos];
+    return sortBy(videos, sorting);
   }
-  videos = [...videos]
-  return sortBy(videos, sorting)
-})
-export const selectFilteredVideos = createSelector(selectSortedVideos, selectFilter, (videos, filter) => {
-  return videos.filter((video) => video.snippet.title.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
-})
-
-const selectCustomCards = createSelector(selectState, state => state.customCards);
-const selectAllVideos = createSelector(selectApiVideos, selectCustomCards, (a, b) => {
-
-})
+);
+export const selectFilteredVideos = createSelector(
+  selectSortedVideos,
+  selectFilter,
+  (videos, filter) => {
+    return videos.filter((video) =>
+      video.snippet.title
+        .toLocaleLowerCase()
+        .includes(filter.toLocaleLowerCase())
+    );
+  }
+);
 
 function compareByDateAsc(a: VideoResultItem, b: VideoResultItem) {
   const dateA = new Date(a.snippet.publishedAt);
@@ -52,4 +68,3 @@ function sortBy(items: VideoResultItem[], sorting: Sorting) {
     (a, b) => Number(b.statistics.viewCount) - Number(a.statistics.viewCount)
   );
 }
-
