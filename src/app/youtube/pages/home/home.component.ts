@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Component } from '@angular/core';
 import { YoutubeService } from 'src/app/core/services/youtube.service';
 
@@ -7,6 +8,5 @@ import { YoutubeService } from 'src/app/core/services/youtube.service';
 })
 export class HomeComponent {
   items$ = this.youtubeService.itemsResult$;
-  // eslint-disable-next-line no-unused-vars
   constructor(private youtubeService: YoutubeService) { }
 }

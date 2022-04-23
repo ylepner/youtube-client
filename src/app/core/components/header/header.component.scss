@@ -8,12 +8,12 @@ button {
   border-radius: 10%;
 }
 
-.search-btn {
-  border-top-right-radius: 10%;
-  border-bottom-right-radius: 10%;
-  width: 80px;
+.admin-btn {
+  border-radius: 5%;
   background-color: #2f80ed;
-  height: 30px;
+  padding: 6px;
+  font-weight: bold;
+  left: 5%;
 }
 
 input {

@@ -1,12 +1,40 @@
-<div class="login-container flex justify-center">
+<form class="login-container flex justify-center" [formGroup]="profileForm">
   <h1 class="login-text bold">Login</h1>
   <div class="login-field grid">
     <p class="title-info">login</p>
-    <input [(ngModel)]="userName" type="text" placeholder="enter your login">
+    <input type="email" placeholder="enter your login email" formControlName="nameForm">
+    <div *ngIf="profileForm.get('nameForm')?.dirty">
+      <div class="form-comment" *ngIf="profileForm.get('nameForm')?.hasError('required')">
+        Name is required
+      </div>
+      <div class="form-comment" *ngIf="profileForm.get('nameForm')?.hasError('email')">
+        Enter a valid email address
+      </div>
+    </div>
   </div>
   <div class="password-field grid">
     <p class="title-info">password</p>
-    <input [(ngModel)]="password" type="password" placeholder="enter the password">
+    <input type="password" placeholder="enter the password" formControlName="passwordForm">
+    <div *ngIf="profileForm.get('passwordForm')?.dirty" class="form-comment">
+      <div class="form-comment" *ngIf="!profileForm.get('passwordForm')?.valid">
+        Password should contain:
+      </div>
+      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.hasError('smallLetter')">
+        small letter
+      </div>
+      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.hasError('capitalLetter')">
+        capital letter
+      </div>
+      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.hasError('number')">
+        number
+      </div>
+      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.hasError('symbol')">
+        special symbol (!@#$%^&*)
+      </div>
+      <div class="form-comment" *ngIf="profileForm.get('passwordForm')?.hasError('minlength')">
+        Password must be at least 8 characters long
+      </div>
+    </div>
   </div>
-  <button (click)="login()" class="login-btn">Login</button>
-</div>
+  <button type="submit" (click)="login()" class="login-btn" [disabled]="!profileForm.valid">Login</button>
+</form>
