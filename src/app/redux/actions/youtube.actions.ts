@@ -3,7 +3,8 @@ import { CustomCard } from "src/app/shared/models/custom-card.model";
 import { VideoResultItem } from "src/app/shared/models/search-item.model";
 
 export const loadVideos = createAction(
-  '[Youtube] Load Videos'
+  '[Youtube] Load Videos',
+  props<{ query: string }>()
 );
 
 export const loadVideosSuccess = createAction(

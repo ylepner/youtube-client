@@ -12,6 +12,8 @@ import { selectFilter, selectFilteredVideos, selectSortedVideos, selectSorting }
 import { filterVideos } from 'src/app/redux/actions/filtering.actions';
 import { sortVideos } from 'src/app/redux/actions/sorting.actions';
 import { SortingType } from 'src/app/shared/models/constants';
+import { distinctUntilChanged, filter, Subject, debounceTime } from 'rxjs';
+import { loadVideos } from 'src/app/redux/actions/youtube.actions';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +26,7 @@ export class HeaderComponent {
 
   isLoggedIn$ = this.authService.isLoggedIn$;
   getUserName$ = this.authService.getUserName$;
-
+  queryText$ = new Subject<string>();
 
   filter$ = this.store.select(selectFilter);
   sorting$ = this.store.select(selectSorting);
@@ -34,14 +36,22 @@ export class HeaderComponent {
     private authService: AuthService,
     private router: Router,
     private store: Store
-  ) { }
+  ) {
+    this.queryText$.pipe(
+      filter((text) => text.length > 2),
+      debounceTime(1000),
+      distinctUntilChanged(),
+    ).subscribe(text => {
+      this.store.dispatch(loadVideos({ query: text }));
+    })
+  }
 
   toggleFilters() {
     this.showFilters = !this.showFilters;
   }
 
   submit() {
-    this.youtubeService.submitQuery(this.searchQuery.searchText || '');
+    this.queryText$.next(this.searchQuery.searchText || '');
   }
 
   sorting(event: SortingType) {
