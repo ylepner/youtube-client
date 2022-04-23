@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       { path: 'home', component: HomeComponent },
       { path: 'detailed/:id', component: DetailedInfoComponent },
       { path: 'admin', component: AdminPageComponent },
+      { path: '', redirectTo: 'home' },
     ]),
     FormsModule,
     ReactiveFormsModule,
