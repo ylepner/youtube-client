@@ -2,8 +2,8 @@
 import { ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
 import { State as YoutubeState } from '../state.models';
 import { storeFreeze } from 'ngrx-store-freeze';
-import { isDevMode } from '@angular/core';
 import * as fromYoutube from './youtube.reducer';
+import { environment } from 'src/environments/environment';
 export interface State {
   youtube: YoutubeState;
 }
@@ -21,6 +21,6 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
     return result;
   };
 }
-export const metaReducers: MetaReducer<State>[] = isDevMode()
+export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [logger, storeFreeze]
   : [];
