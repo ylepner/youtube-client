@@ -17,7 +17,7 @@ export interface State {
 const defaultState: State = {
   apiVideos: [],
   customCards: [],
-  filter: ''
+  filter: '',
 }
 
 export const reducer = createReducer(defaultState, on(loadVideosSuccess, (state, action) => {

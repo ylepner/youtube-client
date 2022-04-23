@@ -12,7 +12,7 @@ export class YoutubeApiEffects {
 
   loadVideos$ = createEffect(() => this.actions$.pipe(
     ofType(loadVideos),
-    switchMap(() => this.youtubeApiService.loadVideos('')),
+    switchMap((action) => this.youtubeApiService.loadVideos(action.query)),
     map((result) => loadVideosSuccess({ videos: result }))
   ))
 }

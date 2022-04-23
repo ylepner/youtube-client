@@ -12,6 +12,5 @@ import { selectApiVideos, selectFilteredVideos } from 'src/app/redux/selectors/y
 export class HomeComponent {
   items$ = this.store.select(selectFilteredVideos);
   constructor(private store: Store) {
-    this.store.dispatch(loadVideos());
   }
 }
