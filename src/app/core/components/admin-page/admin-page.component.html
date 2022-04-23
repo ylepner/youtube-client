@@ -1,5 +1,5 @@
 <div class="card-container">
-  <form [formGroup]="cardForm">
+  <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
     <h1 class="card-title">Create new card</h1>
     <div class="input-title grid">
       <label for="title">Title</label>
@@ -59,7 +59,7 @@
       </div>
     </div>
     <div class="button flex justify-end pt-5">
-      <button type="submit" class="create-btn" [disabled]="!cardForm.valid" (click)="onSubmit()">
+      <button type="submit" class="create-btn" [disabled]="!cardForm.valid">
         Create card
       </button>
     </div>
