@@ -30,7 +30,7 @@ export class DetailedInfoComponent implements OnDestroy {
       if (!this.item) {
         this.routerCommon.navigate(['notfound']);
       }
-      this.stripeClass = getColorOfItem(this.item);
+      this.stripeClass = getColorOfItem(this.item?.snippet.publishedAt);
     });
   }
   ngOnDestroy(): void {

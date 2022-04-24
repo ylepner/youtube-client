@@ -8,8 +8,8 @@ export enum StripeColor {
   Red = 'red',
 }
 
-export function getColorOfItem(item: VideoResultItem | undefined) {
-  const days = getDaysOfPublished(item?.snippet.publishedAt);
+export function getColorOfItem(date: string | undefined) {
+  const days = getDaysOfPublished(date);
   if (days) {
     if (days <= 7) {
       return StripeColor.Blue;
