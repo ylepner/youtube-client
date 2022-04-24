@@ -6,12 +6,13 @@ import { Page404Component } from './core/pages/page404/page404.component';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./youtube/youtube.module').then(m => m.YoutubeModule),
-    canActivate: [AuthGuard]
+    loadChildren: () =>
+      import('./youtube/youtube.module').then((m) => m.YoutubeModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'notfound',

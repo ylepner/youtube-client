@@ -29,7 +29,9 @@ export class AdminPageComponent {
       Validators.minLength(TITLE_MIN_LENGTH),
       Validators.maxLength(TITLE_MAX_LENGTH),
     ]),
-    description: new FormControl('', [Validators.maxLength(DESCRIPTION_MAX_LENGTH)]),
+    description: new FormControl('', [
+      Validators.maxLength(DESCRIPTION_MAX_LENGTH),
+    ]),
     img: new FormControl('', [
       Validators.required,
       Validators.pattern(REGEXP_URL),
@@ -43,11 +45,10 @@ export class AdminPageComponent {
 
   onSubmit() {
     if (this.cardForm.valid) {
-      this.store.dispatch(addCustomCard({ card: this.cardForm.value }))
+      this.store.dispatch(addCustomCard({ card: this.cardForm.value }));
       this.router.navigate(['home']);
     }
   }
-
 }
 const dateValidator: ValidatorFn = (control: AbstractControl) => {
   const dateForm = new Date(control.value);

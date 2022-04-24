@@ -1,5 +1,3 @@
-import { VideoResultItem } from 'src/app/shared/models/search-item.model';
-
 /* eslint-disable no-unused-vars */
 export enum StripeColor {
   Blue = 'blue',

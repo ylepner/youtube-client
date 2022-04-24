@@ -16,7 +16,6 @@ export class SearchItemComponent {
     return this._item;
   }
 
-
   @Input()
   public set item(value: CardView | undefined) {
     this._item = value;

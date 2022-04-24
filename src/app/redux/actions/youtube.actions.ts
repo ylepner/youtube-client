@@ -22,4 +22,4 @@ export const addCustomCard = createAction(
 export const addAllCustomCards = createAction(
   '[CustomCard] Add All Cards',
   props<{ cards: CustomCard[] }>()
-)
+);

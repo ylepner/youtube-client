@@ -1,4 +1,4 @@
-import { Statistics } from "./search-item.model";
+import { Statistics } from './search-item.model';
 
 export interface CardView {
   img: string;
