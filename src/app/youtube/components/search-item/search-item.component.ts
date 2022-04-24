@@ -1,7 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { Component, Input } from '@angular/core';
-import { VideoResultItem } from '../../../shared/models/search-item.model';
+import { Statistics, VideoResultItem } from '../../../shared/models/search-item.model';
 import { getDaysOfPublished, getColorOfItem } from '../../services/utils';
+
+export interface CardView {
+  img: string;
+  statistics?: Statistics;
+  title: string;
+  id: string;
+  publishedAt: string;
+}
 
 @Component({
   selector: 'app-search-item',
@@ -15,6 +23,7 @@ export class SearchItemComponent {
   public get item() {
     return this._item;
   }
+
 
   @Input()
   public set item(value: VideoResultItem | undefined) {
