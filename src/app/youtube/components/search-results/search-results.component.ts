@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { VideoResultItem } from '../../../shared/models/search-item.model';
+import { CardView } from 'src/app/shared/models/custom-card';
 
 @Component({
   selector: 'app-search-results',
@@ -8,5 +8,5 @@ import { VideoResultItem } from '../../../shared/models/search-item.model';
 })
 export class SearchResultsComponent {
   @Input()
-  items?: VideoResultItem[] | null;
+  items?: CardView[] | null;
 }

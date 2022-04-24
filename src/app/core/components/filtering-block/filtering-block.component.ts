@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SortingType, SortOrder } from '../../../shared/models/constants';
 import { Sorting } from '../../../shared/models/search-query.model';
 
@@ -8,12 +8,16 @@ import { Sorting } from '../../../shared/models/search-query.model';
   styleUrls: ['./filtering-block.component.scss'],
 })
 export class FilteringBlockComponent {
+
+  @Input()
   sorting?: Sorting;
   private _filter?: string;
 
   public get filter() {
     return this._filter;
   }
+
+  @Input()
   public set filter(value: string | undefined) {
     this._filter = value;
     this.filteringChange.next(value);

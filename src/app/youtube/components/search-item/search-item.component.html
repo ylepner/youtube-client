@@ -1,8 +1,8 @@
 <div [ngClass]="stripeClass" class="item-container roboto flex flex-col">
   <div class="video">
-    <img src="{{item?.snippet?.thumbnails?.medium?.url}}" alt="">
+    <img src="{{item?.img}}" alt="">
   </div>
-  <div class="statistics">
+  <div class="statistics" *ngIf="item?.statistics">
     <div class="view-info flex">
       <div><img src="assets/svg/viewed.svg" alt=""></div>
       <div>{{item?.statistics?.viewCount}}</div>
@@ -21,9 +21,12 @@
     </div>
   </div>
   <div class="title">
-    {{item?.snippet?.title}}
+    {{item?.title}}
   </div>
-  <div class="btn-container">
+  <div class="btn-container" *ngIf="!item?.isCustom">
     <a [routerLink]="'/detailed/' + item?.id " class="blue-btn more-btn">more...</a>
+  </div>
+  <div class="btn-container" *ngIf="item?.isCustom">
+    <div>Custom Card</div>
   </div>
 </div>

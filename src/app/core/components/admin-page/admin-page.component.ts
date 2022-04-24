@@ -8,6 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { addCustomCard } from 'src/app/redux/actions/youtube.actions';
 
 const REGEXP_URL = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 const TITLE_MIN_LENGTH = 3;
@@ -19,7 +21,7 @@ const DESCRIPTION_MAX_LENGTH = 20;
   styleUrls: ['./admin-page.component.scss'],
 })
 export class AdminPageComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private store: Store) { }
 
   cardForm = new FormGroup({
     title: new FormControl('', [
@@ -27,7 +29,9 @@ export class AdminPageComponent {
       Validators.minLength(TITLE_MIN_LENGTH),
       Validators.maxLength(TITLE_MAX_LENGTH),
     ]),
-    description: new FormControl('', [Validators.maxLength(DESCRIPTION_MAX_LENGTH)]),
+    description: new FormControl('', [
+      Validators.maxLength(DESCRIPTION_MAX_LENGTH),
+    ]),
     img: new FormControl('', [
       Validators.required,
       Validators.pattern(REGEXP_URL),
@@ -36,11 +40,12 @@ export class AdminPageComponent {
       Validators.required,
       Validators.pattern(REGEXP_URL),
     ]),
-    date: new FormControl('', [Validators.required, dateValidator]),
+    creationDate: new FormControl('', [Validators.required, dateValidator]),
   });
 
   onSubmit() {
     if (this.cardForm.valid) {
+      this.store.dispatch(addCustomCard({ card: this.cardForm.value }));
       this.router.navigate(['home']);
     }
   }
