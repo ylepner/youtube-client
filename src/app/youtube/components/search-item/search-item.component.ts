@@ -1,15 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Component, Input } from '@angular/core';
-import { Statistics, VideoResultItem } from '../../../shared/models/search-item.model';
-import { getDaysOfPublished, getColorOfItem } from '../../services/utils';
-
-export interface CardView {
-  img: string;
-  statistics?: Statistics;
-  title: string;
-  id: string;
-  publishedAt: string;
-}
+import { CardView } from 'src/app/shared/models/custom-card';
+import { getColorOfItem } from '../../services/utils';
 
 @Component({
   selector: 'app-search-item',
@@ -19,19 +11,18 @@ export interface CardView {
 export class SearchItemComponent {
   stripeClass: string = '';
 
-  private _item?: VideoResultItem;
+  private _item?: CardView;
   public get item() {
     return this._item;
   }
 
 
   @Input()
-  public set item(value: VideoResultItem | undefined) {
+  public set item(value: CardView | undefined) {
     this._item = value;
     if (!value) {
       return;
     }
-    const days = getDaysOfPublished(value.snippet.publishedAt);
-    this.stripeClass = getColorOfItem(this._item);
+    this.stripeClass = getColorOfItem(this._item?.publishedAt);
   }
 }

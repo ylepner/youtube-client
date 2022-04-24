@@ -1,6 +1,6 @@
 <div [ngClass]="stripeClass" class="item-container roboto flex flex-col">
   <div class="video">
-    <img src="{{item?.snippet?.thumbnails?.medium?.url}}" alt="">
+    <img src="{{item?.img}}" alt="">
   </div>
   <div class="statistics">
     <div class="view-info flex">
@@ -21,7 +21,7 @@
     </div>
   </div>
   <div class="title">
-    {{item?.snippet?.title}}
+    {{item?.title}}
   </div>
   <div class="btn-container">
     <a [routerLink]="'/detailed/' + item?.id " class="blue-btn more-btn">more...</a>
