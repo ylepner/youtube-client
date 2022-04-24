@@ -1,9 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 import { SortOrder } from 'src/app/shared/models/constants';
-import { Sorting } from 'src/app/shared/models/search-query.model';
 import { filterVideos } from '../actions/filtering.actions';
 import { sortVideos } from '../actions/sorting.actions';
-import { addAllCustomCards as loadAllCustomCards, addCustomCard, loadVideosSuccess } from '../actions/youtube.actions';
+import {
+  addAllCustomCards as loadAllCustomCards,
+  addCustomCard,
+  loadVideosSuccess,
+} from '../actions/youtube.actions';
 import { defaultState, State } from '../state.models';
 
 export const reducer = createReducer(
@@ -15,32 +18,28 @@ export const reducer = createReducer(
     return { ...state, filter: action.filter };
   }),
   on(sortVideos, (state, action) => {
-    let oldSorting = state.sorting;
-    let newSorting: Sorting;
-    if (!oldSorting || action.sorting !== oldSorting.field) {
-      newSorting = {
-        field: action.sorting,
-        sortOrder: SortOrder.Asc,
-      };
-    } else {
-      newSorting = {
-        field: action.sorting,
-        sortOrder: toggleSort(oldSorting.sortOrder),
-      };
-    }
-    return { ...state, sorting: newSorting };
+    const oldSorting = state.sorting;
+    const field = action.sorting;
+    const sortOrder =
+      !oldSorting || field !== oldSorting.field
+        ? SortOrder.Asc
+        : toggleSort(oldSorting.sortOrder);
+    return {
+      ...state,
+      sorting: {
+        field,
+        sortOrder,
+      },
+    };
   }),
-  on(addCustomCard, (state, action) => {
+  on(addCustomCard, (state, action): State => {
     return { ...state, customCards: [...state.customCards, action.card] };
   }),
-  on(loadAllCustomCards, (state, action) => {
+  on(loadAllCustomCards, (state, action): State => {
     return { ...state, customCards: action.cards };
-  }),
+  })
 );
 
 function toggleSort(order: SortOrder) {
-  if (order === SortOrder.Asc) {
-    return SortOrder.Desc;
-  }
-  return SortOrder.Asc;
+  return order === SortOrder.Asc ? SortOrder.Desc : SortOrder.Asc;
 }
