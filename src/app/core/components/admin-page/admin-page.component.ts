@@ -38,7 +38,7 @@ export class AdminPageComponent {
       Validators.required,
       Validators.pattern(REGEXP_URL),
     ]),
-    date: new FormControl('', [Validators.required, dateValidator]),
+    creationDate: new FormControl('', [Validators.required, dateValidator]),
   });
 
   onSubmit() {
