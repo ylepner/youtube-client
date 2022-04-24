@@ -20,24 +20,27 @@ export const selectApiVideos = createSelector(
   (state) => state.apiVideos
 );
 
-export const selectCustomCards = createSelector(selectState, (state) => state.customCards)
+export const selectCustomCards = createSelector(
+  selectState,
+  (state) => state.customCards
+);
 
 const selectCardItems = createSelector(selectApiVideos, (apiVideos) =>
-  apiVideos.map(transformVideoItemToCardItem))
+  apiVideos.map(transformVideoItemToCardItem)
+);
 
-const selectCustomCardsItems = createSelector(selectCustomCards, (customCards) =>
-  customCards.map(transformCardItem))
+const selectCustomCardsItems = createSelector(
+  selectCustomCards,
+  (customCards) => customCards.map(transformCardItem)
+);
 
 export const selectSortedVideos = createSelector(
   selectCardItems,
   selectCustomCardsItems,
   selectSorting,
   (apiVideos, customCards, sorting) => {
-    const allVideos = [...apiVideos, ...customCards]
-    if (!sorting) {
-      return allVideos;
-    }
-    return sortBy(allVideos, sorting);
+    const allVideos = [...apiVideos, ...customCards];
+    return sorting ? sortBy(allVideos, sorting) : allVideos;
   }
 );
 export const selectFilteredVideos = createSelector(
@@ -45,9 +48,7 @@ export const selectFilteredVideos = createSelector(
   selectFilter,
   (videos, filter) => {
     return videos.filter((video) =>
-      video.title
-        .toLocaleLowerCase()
-        .includes(filter.toLocaleLowerCase())
+      video.title.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
     );
   }
 );
@@ -73,11 +74,13 @@ function sortBy(items: CardView[], sorting: Sorting) {
   }
   if (field === SortingType.ViewsCount && sortOrder === SortOrder.Asc) {
     return newItems.sort(
-      (a, b) => toNumber(a.statistics?.viewCount) - toNumber(b.statistics?.viewCount)
+      (a, b) =>
+        toNumber(a.statistics?.viewCount) - toNumber(b.statistics?.viewCount)
     );
   }
   return newItems.sort(
-    (a, b) => toNumber(b.statistics?.viewCount) - toNumber(a.statistics?.viewCount)
+    (a, b) =>
+      toNumber(b.statistics?.viewCount) - toNumber(a.statistics?.viewCount)
   );
 }
 
@@ -89,7 +92,7 @@ function transformVideoItemToCardItem(videoItem: VideoResultItem): CardView {
     title: videoItem.snippet.title,
     statistics: videoItem.statistics,
     isCustom: false,
-  }
+  };
 }
 
 function transformCardItem(card: CustomCard): CardView {
@@ -99,13 +102,13 @@ function transformCardItem(card: CustomCard): CardView {
     publishedAt: card.creationDate,
     title: card.title,
     isCustom: true,
-  }
+  };
 }
 
 function toNumber(data: string | undefined) {
-  const number = Number(data)
+  const number = Number(data);
   if (isNaN(number)) {
-    return 0
+    return 0;
   }
-  return number
+  return number;
 }
