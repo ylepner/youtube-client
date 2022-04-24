@@ -87,7 +87,8 @@ function transformVideoItemToCardItem(videoItem: VideoResultItem): CardView {
     img: videoItem.snippet.thumbnails.high.url,
     publishedAt: videoItem.snippet.publishedAt,
     title: videoItem.snippet.title,
-    statistics: videoItem.statistics
+    statistics: videoItem.statistics,
+    isCustom: false,
   }
 }
 
@@ -96,7 +97,8 @@ function transformCardItem(card: CustomCard): CardView {
     id: '',
     img: card.img,
     publishedAt: card.creationDate,
-    title: card.title
+    title: card.title,
+    isCustom: true,
   }
 }
 

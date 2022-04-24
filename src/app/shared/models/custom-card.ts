@@ -6,4 +6,5 @@ export interface CardView {
   title: string;
   id: string;
   publishedAt: string;
+  isCustom: boolean;
 }
