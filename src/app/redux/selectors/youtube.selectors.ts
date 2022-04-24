@@ -20,7 +20,7 @@ export const selectApiVideos = createSelector(
   (state) => state.apiVideos
 );
 
-const selectCustomCards = createSelector(selectState, (state) => state.customCards)
+export const selectCustomCards = createSelector(selectState, (state) => state.customCards)
 
 const selectCardItems = createSelector(selectApiVideos, (apiVideos) =>
   apiVideos.map(transformVideoItemToCardItem))

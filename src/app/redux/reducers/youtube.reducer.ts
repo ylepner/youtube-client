@@ -3,7 +3,7 @@ import { SortOrder } from 'src/app/shared/models/constants';
 import { Sorting } from 'src/app/shared/models/search-query.model';
 import { filterVideos } from '../actions/filtering.actions';
 import { sortVideos } from '../actions/sorting.actions';
-import { addCustomCard, loadVideosSuccess } from '../actions/youtube.actions';
+import { addAllCustomCards as loadAllCustomCards, addCustomCard, loadVideosSuccess } from '../actions/youtube.actions';
 import { defaultState, State } from '../state.models';
 
 export const reducer = createReducer(
@@ -30,9 +30,12 @@ export const reducer = createReducer(
     }
     return { ...state, sorting: newSorting };
   }),
-  on(addCustomCard, (state, action): State => {
+  on(addCustomCard, (state, action) => {
     return { ...state, customCards: [...state.customCards, action.card] };
-  })
+  }),
+  on(loadAllCustomCards, (state, action) => {
+    return { ...state, customCards: action.cards };
+  }),
 );
 
 function toggleSort(order: SortOrder) {
